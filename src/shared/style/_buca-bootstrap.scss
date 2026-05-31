@@ -1,0 +1,180 @@
+/**
+ * @file _buca-bootstrap.scss
+ * @description Framework CSS utilitario personalizado de tokens, variables y utilidades atómicas.
+ * @author BATT Principal Automation Engineer
+ */
+
+// 1. Definición de Variables y Tokens de Diseño Adaptativos (Google Gemini Style)
+:root, [data-bs-theme="light"] {
+    --color-bg-base: #f0f4f9; // Gris/azul Google sutil plano
+    --color-bg-card: #ffffff; // Sólido plano para máximo rendimiento (sin transparencias pesadas)
+    --color-border-card: #e0e2e6; // Bordes muy finos de 1px
+    
+    // Acentos refinados estilo Google
+    --color-primary: #0b57d0;       // Azul de Google
+    --color-primary-glow: rgba(11, 87, 208, 0.05);
+    --color-accent-green: #14a44d;  // Verde Google
+    --color-accent-green-glow: rgba(20, 164, 77, 0.05);
+    --color-accent-yellow: #e4a11b; // Amarillo Google
+    --color-accent-yellow-glow: rgba(228, 161, 27, 0.05);
+    --color-accent-red: #dc4c64;    // Rojo Google
+    --color-accent-red-glow: rgba(220, 76, 100, 0.05);
+    --color-accent-pink: #b81b6c;   // Magenta de IA
+    --color-surface-variant: #eef2fa; // Fondo de pestañas suaves de Google
+    
+    // Gradientes estilo Google Gemini
+    --gemini-gradient: linear-gradient(135deg, #0b57d0 0%, #b81b6c 50%, #ea4335 100%);
+    --gemini-gradient-active: linear-gradient(135deg, #1a73e8 0%, #e91e63 50%, #f4b400 100%);
+    --card-glow-shadow: none; // Sin sombras pesadas
+    
+    // Texto
+    --color-text-main: #1f1f1f;     // Texto Google
+    --color-text-muted: #474747;    // Texto secundario Google
+    
+    // Fuentes
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --box-shadow-premium: none; // Sin sombras para 60 FPS estables
+
+    // Control de rendimiento y efectos
+    --bg-glow-display: block;
+    --bg-glow-animation: glowMove 15s infinite alternate ease-in-out;
+    --backdrop-blur-amount: none; // Desactivar desenfoques pesados de GPU por defecto
+    --backdrop-blur-modal: none;
+    --box-shadow-premium-current: none;
+    --transition-speed-hover: 0.1s; // Transiciones rápidas y fluidas
+    --filter-drop-shadow: none;
+    --pulse-animation-dot: pulseDot 2s infinite;
+    --upload-bounce-animation: none; // Icono estático por defecto para evitar parpadeos
+}
+
+[data-bs-theme="dark"] {
+    --color-bg-base: #131314; // Grafito oscuro de Gemini/AI Studio
+    --color-bg-card: #1e1f20; // Carbón sólido plano para máximo rendimiento
+    --color-border-card: #2d2f31; // Bordes oscuros finos
+    
+    // Acentos neón para el modo oscuro
+    --color-primary: #a8c7fa;       // Celeste Gemini
+    --color-primary-glow: rgba(168, 199, 250, 0.08);
+    --color-accent-green: #c2e7ff;  
+    --color-accent-green-glow: rgba(194, 231, 255, 0.08);
+    --color-accent-yellow: #facc15; 
+    --color-accent-yellow-glow: rgba(250, 204, 21, 0.08);
+    --color-accent-red: #f87171;    
+    --color-accent-red-glow: rgba(248, 113, 113, 0.08);
+    --color-accent-pink: #f472b6;   
+    --color-surface-variant: #131314; // Fondo de pestañas oscuras
+    
+    // Gradientes estilo Google Gemini
+    --gemini-gradient: linear-gradient(135deg, #a8c7fa 0%, #f472b6 50%, #facc15 100%);
+    --gemini-gradient-active: linear-gradient(135deg, #c2e7ff 0%, #f355a0 50%, #fffc00 100%);
+    --card-glow-shadow: none;
+    
+    // Texto
+    --color-text-main: #e3e3e3;     // Gris claro
+    --color-text-muted: #8e918f;    // Gris apagado
+    
+    --box-shadow-premium: none;
+
+    // Control de rendimiento y efectos
+    --bg-glow-display: block;
+    --bg-glow-animation: glowMove 15s infinite alternate ease-in-out;
+    --backdrop-blur-amount: none;
+    --backdrop-blur-modal: none;
+    --box-shadow-premium-current: none;
+    --transition-speed-hover: 0.1s;
+    --filter-drop-shadow: none;
+    --pulse-animation-dot: pulseDot 2s infinite;
+    --upload-bounce-animation: none;
+}
+
+// Inyección del modo ultra-optimizado de bajo consumo para Phenom II
+body.low-perf-mode {
+    --bg-glow-display: none !important;
+    --bg-glow-animation: none !important;
+    --backdrop-blur-amount: none !important;
+    --backdrop-blur-modal: none !important;
+    --box-shadow-premium-current: none !important;
+    --transition-speed-hover: 0s !important;
+    --filter-drop-shadow: none !important;
+    --pulse-animation-dot: none !important;
+    --upload-bounce-animation: none !important;
+}
+
+// Support for system-wide reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+    :root, [data-bs-theme="light"], [data-bs-theme="dark"] {
+        --bg-glow-animation: none !important;
+        --pulse-animation-dot: none !important;
+        --upload-bounce-animation: none !important;
+        --transition-speed-hover: 0s !important;
+    }
+}
+
+// 2. Reseteo Básico de Caja
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+// 3. Clases de "Glassmorphism"
+.glass-panel {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    backdrop-filter: var(--backdrop-blur-amount);
+    -webkit-backdrop-filter: var(--backdrop-blur-amount);
+    border-radius: 12px;
+}
+
+// 4. Utilidades Atómicas de Layout
+.flex-row { display: flex; align-items: center; }
+.flex-column { display: flex; flex-direction: column; }
+.justify-between { justify-content: space-between; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+
+// 5. Animación de Fondo
+@keyframes glowMove {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(8%, 8%) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+.bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
+    display: var(--bg-glow-display);
+    animation: var(--bg-glow-animation);
+}
+
+.bg-glow-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.bg-glow-2 {
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, var(--color-accent-pink) 0%, transparent 70%);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -5s;
+}

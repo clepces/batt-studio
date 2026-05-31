@@ -1,0 +1,3 @@
+[Texto de demostración en Coreano]
+영원한 왕국의 첫 번째 장이 시작됩니다.
+Este es el capítulo de origen número 001 que simula un texto listo para procesar.

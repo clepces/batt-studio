@@ -1,0 +1,150 @@
+# Volumen 01: El Despertar del Eterno — Capítulo 2: La Décima Milésima Reencarnación
+
+
+# Volumen 01: El Despertar del Eterno [-] Capítulo 2: La Décima Milésima Reencarnación (＼(〇_ｏ)／)
+
+
+Chen Luo esbozó una sonrisa de autodesprecio y continuó: - En ese momento sentí como si el cielo se estuviera derrumbando. Estaba tan aturdido que ni siquiera supe cómo salí del hospital. ((_ _|||)💨🩸)
+
+
+Aunque no estaba casado y acababa de romper con mi novia, mis padres aún vivían. ((;´༎ຶД༎ຶ`)💨🩸)
+
+
+No me atrevía a contarles la noticia, ni siquiera me atrevía a ir a casa por temor a que notaran algo extraño en mí. (( >д<)💨)
+
+
+Durante esos últimos tres meses de vida, utilicé todos mis ahorros para someterme a quimioterapia. El único resultado fue que le di todo mi dinero al hospital, mientras que mi salud empeoraba cada vez más, manteniéndome bajo el constante pavor de una muerte inminente. (💧)
+
+
+En la etapa final de mi existencia, ya no tenías fuerzas ni para caminar. No tuve más remedio que confesárselo a mis padres para que vinieran a cuidarme, y también para verlos por última vez. ((ヘ_ヘ))
+
+
+Aún recuerdo vívidamente la expresión de absoluto desmoronamiento de mi padre y mi madre al verme. Sabía que habrían dado la vida por tomar mi lugar, pero solo podían contemplar impotentes cómo me desvanecía poco a poco. ((_ _|||)💨🩸)
+
+
+Hasta que un día, tres meses después, que resultó ser el Día de los Inocentes de 2019, el destino me gastó una broma pesada. ((ʘ‿ʘ)凸)
+
+
+Al ver que mis padres iban a gastar los ahorros de toda su vida para seguir arrojando dinero en ese pozo sin fondo, y sabiendo que de todos modos iba a morir, pensé que no podía arrastrarlos conmigo. Así que el 1 de abril de 2019, me arrojé desde la azotea del edificio de hospitalización del hospital. (( >д<)💨)
+
+
+Cuando Chen Luo llegó a este punto de su relato, una mirada de sarcasmo asomó en los ojos de Xie Liuyun, ya que hoy era precisamente el 1 de abril de 2019. (∑(ﾟﾛﾟ〃))
+
+
+- Je, entonces deberías estar muerto ahora mismo. ¿Por qué estás aquí? ¿O acaso la quimioterapia te causó un trastorno psiquiátrico? (╮(─▽─)╭)
+
+
+Chen Luo estalló en carcajadas: - ¡Mira, esa es la mejor parte! Al saltar de un edificio de más de veinte pisos, por supuesto que quedé más que muerto. ((_ _|||)💨🩸)
+
+
+Sin embargo, poco después, descubrí un hecho sumamente impactante: de repente recuperé el conocimiento y me encontré de regreso en el 1 de enero de 2019, el mismísimo día en que me diagnosticaron en el hospital. ((;´༎ຶД༎ຶ`)💨🩸)
+
+
+Para ser exactos, había reencarnado. (( >д<)💨)
+
+
+Después de superar un breve período de conmoción e incredulidad, finalmente asimilé esta asombrosa realidad. ((*ﾉ▽ﾉ))
+
+
+But el maldito destino me jugó una mala pasada: la fecha de mi reencarnación coincidía exactamente con el día en que recibí mi sentencia de muerte. Es decir, seguía condenado a morir, solo que me habían otorgado tres meses más de vida. ((×_×))
+
+
+Xie Liuyun se quedó estupefacta por un segundo, y luego no pudo evitar burlarse: - Jeje, ¿reencarnación? Pensé que relatarías una historia fascinante, pero resulta que es solo tu delirio esquizofrénico. ((_ _|||)💨🩸)
+
+
+Xia Fan y los guardaespaldas compartían expresiones de absoluta incredulidad, convencidos de que Chen Luo se había escapado de algún centro de salud mental. Le dirigían miradas sumamente extrañas y llenas de aprensión, pues nadie sabía de qué era capaz un demente. ((๑♡⌓♡๑))
+
+
+A Chen Luo no le importó en absoluto la ironía de Xie Liuyun. Sumergido por completo en sus propios recuerdos, prosiguió: - La primera vez que reencarné, me sentí pletórico, inmensamente emocionado. Incluso le agradecí al cielo por darme una segunda oportunidad. (( >д<)💨)
+
+
+> **Nota del Traductor:** El día de los inocentes de 2019 (1 de abril) es el punto crítico de anclaje de Chen Luo; representa tanto su muerte original como su constante reinicio existencial.
+
+En esa ocasión, no gasté ni un centavo en tratamientos médicos. Retiré todos mis ahorros y llevé a mis padres a viajar por todo el país, disfrutando durante dos meses enteros hasta que mi condición física se volvió imposible de ocultar. (💧)
+
+
+Para no ser una carga para ellos, me despedí de mis padres y volví a elegir el camino del suicidio. ((ヘ_ヘ))
+
+
+No obstante, lo que jamás habría imaginado fue que desperté una vez más en el 1 de enero de 2019. ((_ _|||)💨🩸)
+
+
+La segunda vez seguía muy entusiasmado, creyendo que era un designio divino para prolongar mi tiempo de vida de forma alternativa. ((;´༎ຶД༎ຶ`)💨🩸)
+
+
+Esta vez llevé a mis padres al extranjero, agotando nuevamente mis recursos. Pero el cáncer seguía reclamando mi vida; mi estado se tornaba cada vez más debilitado a medida que pasaban los días, siendo imposible de disimular. (( >д<)💨)
+
+
+Elegí el suicidio una vez más, y como si una fuerza invisible gobernara mi destino, retorné nuevamente al 1 de enero... (💧)
+
+
+Y así, seguí reencarnando. Al principio me entusiasmaba, pero al llegar a la centésima reencarnación, empecé a cuestionarme: ¿por qué yo? ((ヘ_ヘ))
+
+
+Tres escasos meses apenas alcanzan para familiarizarse con un extraño. Me resultaba imposible mantener vínculos estrechos con nadie, pues sabía que moriría pronto y solo dejaría aflicción tras de mí. ((_ _|||)💨🩸)
+
+
+El dolor más profundo residía en que no podía revelarle a nadie mi situación; si moría, el world entero se reiniciaría al 1 de enero, borrando sus memorias y volviendo al punto de partida. ((;´༎ຶД༎ຶ`)💨🩸)
+
+
+En ese instante, comprendí que había sido despojado de mi lugar en el tejido del universo, convertido en un paria del tiempo. ((ʘ‿ʘ)凸)
+
+
+Hacia mi reencarnación número doscientas, le rugí al universo entero con absoluta rabia: - ¡Me equivoqué! ¡Libérenme de esta maldita prisión del tiempo y déjenme morir de una vez! (💧)
+
+
+Al pronunciar estas palabras, los semblantes de Xie Liuyun, Xia Fan y los demás experimentaron un sutil cambio. ((ヘ_ヘ))
+
+
+Y es que la profunda soledad y la inmensa fatiga existencial que impregnaban la voz y la mirada de Chen Luo poseían una fuerza de convicción asombrosa. Al escucharlo, sus emociones se vieron alteradas, sembrando en ellos la vaga sospecha de que lo que decía era verdad. ((_ _|||)💨🩸)
+
+
+Sin embargo, lo que relataba era tan descabellado que ninguna mente racional podía aceptarlo de buenas a primeras. ((*♡∀♡))
+
+
+- En esa época empecé a buscar la muerte de todas las formas posibles: saltando al vacío, ahorcándome, arrojándome a las vías del tren, ingiriendo venenos, ahogándome en el océano, provocando colisiones vehiculares, marchándome al convulso Medio Oriente a recibir disparos, actuando como terrorista suicida... Si echo cuentas, habré experimentado más de un centenar de formas distintas de morir. (( >д<)💨)
+
+
+But para mi absoluta frustración, sin importar cómo pereciera, o si terminaba con mi vida antes de que se cumplieran los tres meses, siempre despertaba en el 1 de enero de 2019. (💧)
+
+
+Y daba igual lo que intentara: ir a las mejores clínicas de hepatología del mundo, recurrir a la criogenización corporal... nada me permitía sobrevivir más allá del 1 de abril. ((ヘ_ヘ))
+
+
+Estaba bajo una maldición irrevocable, atrapado eternamente en este bucle sin fin de noventa días. ((×_×))
+
+
+Para mi reencarnación número trescientas, finalmente me resigné a mi destino. (( -_-)旦~)
+
+
+En ese punto, Chen Luo se rió de sí mismo con sorna: - Dado que el maldito creador decidió jugar conmigo de esta manera, decidí que yo también me divertiría un poco. (( >д<)💨)
+
+
+Durante estos efímeros tres meses, aunque las personas me olviden al reiniciar, los conocimientos que adquiero permanecen grabados en mi mente. (💧)
+
+
+En este ciclo de tiempo infinito, dispongo de todo el tiempo y la energía del mundo para aprender absolutamente todo lo que desee. ((ヘ_ヘ))
+
+
+Hoy se cumple exactamente mi décima milésima reencarnación, lo que equivale a casi dos mil años de experiencia acumulada... ((_ _|||)💨🩸)
+
+
+He aprendido cada idioma y sistema de escritura de este mundo, incluso los lenguajes olvidados de las cuatro grandes civilizaciones antiguas. ((;´༎ຶД༎ຶ`)💨🩸)
+
+
+Domino a la perfección todos los instrumentos musicales; soy un experto en tasación de tesoros, artes marciales, conducción extrema, danza, actuación, alta cocina... (( >д<)💨)
+
+
+> **Nota del Traductor:** El día de los inocentes de 2019 (1 de abril) es el punto crítico de anclaje de Chen Luo; representa tanto su muerte original como su constante reinicio existencial.
+
+A estas alturas, ni yo mismo sé cuántas habilidades poseo en mi repertorio. (💧)
+
+
+Valiéndome de estas destrezas, he ejercido todos los oficios imaginables: desde vagabundo, asesino a sueldo, biólogo, médico, abogado y obrero, hasta celebridad de renombre y hacker de élite... ((ヘ_ヘ))
+
+
+Para buscar un ápice de adrenalina, fui mercenario en zonas de guerra en Medio Oriente, pirata en el Caribe y llegué a ser el director ejecutivo de la corporación con mayor capitalización bursátil del planeta. ((_ _|||)💨🩸)
+
+
+Cuando agoté todas las profesiones imaginables, dediqué cientos de reencarnaciones a estudiar matemáticas, física, química y medicina avanzada; he ganado el Premio Nobel más de cien veces. (ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚)
+

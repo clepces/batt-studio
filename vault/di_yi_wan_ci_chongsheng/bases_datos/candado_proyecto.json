@@ -1,0 +1,11 @@
+{
+    "novel_id": "di_yi_wan_ci_chongsheng",
+    "pipeline_active": true,
+    "safety_lockout": false,
+    "source_language": "zh",
+    "target_language": "es_global_neutro",
+    "operational_restrictions": {
+        "prevent_overwrite_final_chapters": true,
+        "allow_background_analytics": true
+    }
+}

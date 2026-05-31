@@ -1,0 +1,16 @@
+{
+    "novel_id": "el_reino_eterno",
+    "last_processed_chapter": 0,
+    "last_processed_date": "2026-05-28",
+    "execution_history": [
+        {
+            "chapter_id": "capitulo_001",
+            "title_es": "Fallo: capitulo_001",
+            "timestamp": "2026-05-31T20:44:28.827Z",
+            "status": "FAILED",
+            "error": "API Error: models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+            "processed_by_agents": []
+        }
+    ],
+    "pending_queue": []
+}

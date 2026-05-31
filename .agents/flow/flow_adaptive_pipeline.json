@@ -1,0 +1,84 @@
+{
+    "pipeline_name": "BATT Adaptive Pipeline Flow",
+    "version": "1.1.0",
+    "description": "Flujo de orquestación optimizado que reduce tokens mediante bypass de agentes y enrutamiento inteligente según el volumen y naturaleza del capítulo.",
+    "optimization_target": "Reducción de coste $0.00 USD (Spark Plan)",
+    "pipeline_sequence": [
+        {
+            "step": 1,
+            "agent_id": "traductor-universal",
+            "role": "Traducción literal directa de origen a borrador crudo",
+            "input_path": "01_origen/{chapter_id}.txt",
+            "output_path": "02_crudo/{chapter_id}_crudo.txt",
+            "skills_applied": ["skill_glosario_lookup"],
+            "bypass_rules": {
+                "condition_empty_input": "error_halt"
+            }
+        },
+        {
+            "step": 2,
+            "agent_id": "corrector-lqa",
+            "role": "Aplicación de reglas ortotípicas, tono divino e inyección de Kaomojis",
+            "input_path": "02_crudo/{chapter_id}_crudo.txt",
+            "output_path": "02_crudo/{chapter_id}_lqa.txt",
+            "skills_applied": ["skill_kaomoji_filter"],
+            "model_routing_override": {
+                "size_threshold_chars": 2000,
+                "under_threshold_model": "gemini-1.5-flash",
+                "over_threshold_model": "gemini-1.5-pro"
+            }
+        },
+        {
+            "step": 3,
+            "agent_id": "localizador-cultural",
+            "role": "Conversión de formatos regionales, Pinyin y empaquetado final",
+            "input_path": "02_crudo/{chapter_id}_lqa.txt",
+            "output_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md"
+        },
+        {
+            "step": 4,
+            "agent_id": "extractor-historico",
+            "role": "Minería incremental de entidades, personajes y ubicaciones geográficas",
+            "input_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+            "targets": [
+                "bases_datos/glosario_elenco.md",
+                "bases_datos/mapa_geografia.md"
+            ],
+            "bypass_rules": {
+                "condition_local_scan_no_entities": {
+                    "action": "skip_step",
+                    "emit_websocket_event": "pipeline:step-skipped",
+                    "reason": "No se detectaron nuevos Hanzi o nombres no indexados en el escaneo local de pre-procesamiento."
+                }
+            }
+        },
+        {
+            "step": 5,
+            "agent_id": "archivista-indexador",
+            "role": "Indexación jerárquica del nodo y resumen de 3 líneas",
+            "input_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+            "targets": [
+                "bases_datos/indice_cronologico.md"
+            ],
+            "skills_applied": ["skill_incremental_indexer"]
+        },
+        {
+            "step": 6,
+            "agent_id": "director-arcos",
+            "role": "Mantenimiento del progreso y sincronización de paneles de control",
+            "input_path": "bases_datos/indice_cronologico.md",
+            "targets": [
+                "bases_datos/control_progreso.json",
+                "dashboard_global.md"
+            ],
+            "trigger_rules": {
+                "modulo_capitulos": 10,
+                "action_if_not_triggered": {
+                    "action": "skip_step",
+                    "emit_websocket_event": "pipeline:step-skipped",
+                    "reason": "El panel global se actualiza de forma adaptativa cada 10 capítulos procesados."
+                }
+            }
+        }
+    ]
+}

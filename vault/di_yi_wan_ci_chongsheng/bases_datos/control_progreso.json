@@ -1,0 +1,156 @@
+{
+    "novel_id": "di_yi_wan_ci_chongsheng",
+    "last_processed_chapter": 10,
+    "last_processed_date": "2026-05-31",
+    "execution_history": [
+        {
+            "chapter_id": "capitulo_001",
+            "title_es": "Un Loco",
+            "timestamp": "2026-05-27T21:59:30-04:00",
+            "status": "COMPLETED",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ]
+        },
+        {
+            "title_es": "La Decima Milesima Reencarnacion",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:38:37Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_002"
+        },
+        {
+            "title_es": "Capitulo 3",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:38:46Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_003"
+        },
+        {
+            "title_es": "Capitulo 4",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:38:55Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_004"
+        },
+        {
+            "title_es": "Capitulo 5",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:39:04Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_005"
+        },
+        {
+            "title_es": "Capitulo 6",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:39:13Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_006"
+        },
+        {
+            "title_es": "Capitulo 7",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:39:23Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_007"
+        },
+        {
+            "title_es": "Capitulo 8",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:39:32Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_008"
+        },
+        {
+            "title_es": "Capitulo 9",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:39:41Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_009"
+        },
+        {
+            "title_es": "Capitulo 10",
+            "status": "COMPLETED",
+            "timestamp": "2026-05-31T11:39:50Z",
+            "processed_by_agents": [
+                "traductor-universal",
+                "corrector-lqa",
+                "localizador-cultural",
+                "extractor-historico",
+                "archivista-indexador",
+                "director-arcos"
+            ],
+            "chapter_id": "capitulo_010"
+        },
+        {
+            "chapter_id": "capitulo_011",
+            "title_es": "Fallo: capitulo_011",
+            "timestamp": "2026-05-31T20:41:56.538Z",
+            "status": "FAILED",
+            "error": "API Error: models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+            "processed_by_agents": []
+        }
+    ],
+    "pending_queue": []
+}

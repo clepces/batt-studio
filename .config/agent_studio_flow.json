@@ -1,0 +1,56 @@
+{
+    "pipeline_name": "BATT Agentic Sequential Flow",
+    "version": "1.0.0",
+    "pipeline_sequence": [
+        {
+            "step": 1,
+            "agent_id": "traductor-universal",
+            "role": "Traducción literal directa de origen a borrador crudo",
+            "input_path": "01_origen/{chapter_id}.txt",
+            "output_path": "02_crudo/{chapter_id}_crudo.txt"
+        },
+        {
+            "step": 2,
+            "agent_id": "corrector-lqa",
+            "role": "Aplicación de reglas ortotípicas, tono divino e inyección de Kaomojis",
+            "input_path": "02_crudo/{chapter_id}_crudo.txt",
+            "output_path": "02_crudo/{chapter_id}_lqa.txt"
+        },
+        {
+            "step": 3,
+            "agent_id": "localizador-cultural",
+            "role": "Conversión de formatos regionales, Pinyin y empaquetado final",
+            "input_path": "02_crudo/{chapter_id}_lqa.txt",
+            "output_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md"
+        },
+        {
+            "step": 4,
+            "agent_id": "extractor-historico",
+            "role": "Minería incremental de entidades, personajes y ubicaciones geográficas",
+            "input_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+            "targets": [
+                "bases_datos/glosario_elenco.md",
+                "bases_datos/mapa_geografia.md"
+            ]
+        },
+        {
+            "step": 5,
+            "agent_id": "archivista-indexador",
+            "role": "Indexación jerárquica del nodo y resumen de 3 líneas",
+            "input_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+            "targets": [
+                "bases_datos/indice_cronologico.md"
+            ]
+        },
+        {
+            "step": 6,
+            "agent_id": "director-arcos",
+            "role": "Mantenimiento del progreso y sincronización de paneles de control",
+            "input_path": "bases_datos/indice_cronologico.md",
+            "targets": [
+                "bases_datos/control_progreso.json",
+                "dashboard_global.md"
+            ]
+        }
+    ]
+}

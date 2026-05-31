@@ -1,0 +1,48 @@
+{
+    "pipeline_name": "BATT Cached Context Batch Flow",
+    "version": "1.0.0",
+    "description": "Flujo de procesamiento secuencial optimizado para procesamiento por lotes que explota el Context Caching de Gemini al agrupar múltiples capítulos consecutivos, reduciendo el coste de tokens repetidos de entrada.",
+    "optimization_target": "Ahorro de ~50% a ~80% de tokens de entrada repetidos en lotes de capítulos.",
+    "cache_settings": {
+        "ttl_seconds": 3600,
+        "shared_context_files": [
+            ".config/rules_globales.md",
+            ".config/palette_kaomojis.json"
+        ]
+    },
+    "pipeline_sequence": [
+        {
+            "step": 1,
+            "agent_id": "traductor-universal",
+            "role": "Traducción literal directa utilizando caché de sistema",
+            "input_path": "01_origen/{chapter_id}.txt",
+            "output_path": "02_crudo/{chapter_id}_crudo.txt",
+            "cache_context": {
+                "enable": true,
+                "cached_system_instructions": ".agents/rules/traductor-universal.md"
+            }
+        },
+        {
+            "step": 2,
+            "agent_id": "corrector-lqa",
+            "role": "Aplicación de reglas y kaomojis con caché de sistema",
+            "input_path": "02_crudo/{chapter_id}_crudo.txt",
+            "output_path": "02_crudo/{chapter_id}_lqa.txt",
+            "cache_context": {
+                "enable": true,
+                "cached_system_instructions": ".agents/rules/corrector-lqa.md"
+            }
+        },
+        {
+            "step": 3,
+            "agent_id": "localizador-cultural",
+            "role": "Conversión y empaquetado final de lote",
+            "input_path": "02_crudo/{chapter_id}_lqa.txt",
+            "output_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+            "cache_context": {
+                "enable": true,
+                "cached_system_instructions": ".agents/rules/localizador-cultural.md"
+            }
+        }
+    ]
+}

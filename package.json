@@ -1,0 +1,29 @@
+{
+  "name": "buca-studio",
+  "version": "2.6.0",
+  "description": "Buca Agentic Translation Tool - Consola de Telemetría ERP",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "server": "node server.js",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "sass": "^1.77.2",
+    "vite": "^8.0.14"
+  },
+  "overrides": {
+    "esbuild": "^0.25.0"
+  }
+}

@@ -1,0 +1,526 @@
+{
+    "system_config": {
+        "system_settings": {
+            "studio_name": "Buca AI Translation Tool (BATT)",
+            "version": "1.0.0",
+            "environment": "local_antigravity",
+            "developer_mode": false
+        },
+        "translation_modes": {
+            "source_language": "zh",
+            "target_languages": {
+                "es_global_neutro": true,
+                "en_literary": false,
+                "it_literary": false,
+                "sr_cyrillic": false
+            }
+        },
+        "model_routing": {
+            "comment": "Enrutamiento inteligente para optimizar el consumo de tokens y presupuesto técnico.",
+            "traductor-universal": "gemini-1.5-pro",
+            "extractor-historico": "gemini-1.5-flash",
+            "archivista-indexador": "gemini-1.5-flash",
+            "director-arcos": "gemini-1.5-pro",
+            "corrector-lqa": "gemini-1.5-pro",
+            "localizador-cultural": "gemini-1.5-flash"
+        },
+        "safety_firewall": {
+            "comment": "Cortafuegos activo para prevenir errores humanos, lagunas y sobrecostos por reprocesamiento.",
+            "garbage_text_filter": true,
+            "max_character_threshold_per_chapter": 15000,
+            "prevent_overwrite_final_chapters": true,
+            "processing_queue_mode": "FIFO_SEQUENTIAL",
+            "retry_on_empty_file_leak": true,
+            "max_api_retries": 3
+        },
+        "automation_triggers": {
+            "watcher_active": true,
+            "input_directory_polling_ms": 500,
+            "backup_before_write": true
+        }
+    },
+    "timestamp": "2026-05-31 20:44:28 LOCAL",
+    "agent_flow": {
+        "pipeline_name": "BATT Agentic Sequential Flow",
+        "version": "1.0.0",
+        "pipeline_sequence": [
+            {
+                "step": 1,
+                "agent_id": "traductor-universal",
+                "role": "Traducción literal directa de origen a borrador crudo",
+                "input_path": "01_origen/{chapter_id}.txt",
+                "output_path": "02_crudo/{chapter_id}_crudo.txt"
+            },
+            {
+                "step": 2,
+                "agent_id": "corrector-lqa",
+                "role": "Aplicación de reglas ortotípicas, tono divino e inyección de Kaomojis",
+                "input_path": "02_crudo/{chapter_id}_crudo.txt",
+                "output_path": "02_crudo/{chapter_id}_lqa.txt"
+            },
+            {
+                "step": 3,
+                "agent_id": "localizador-cultural",
+                "role": "Conversión de formatos regionales, Pinyin y empaquetado final",
+                "input_path": "02_crudo/{chapter_id}_lqa.txt",
+                "output_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md"
+            },
+            {
+                "step": 4,
+                "agent_id": "extractor-historico",
+                "role": "Minería incremental de entidades, personajes y ubicaciones geográficas",
+                "input_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+                "targets": [
+                    "bases_datos/glosario_elenco.md",
+                    "bases_datos/mapa_geografia.md"
+                ]
+            },
+            {
+                "step": 5,
+                "agent_id": "archivista-indexador",
+                "role": "Indexación jerárquica del nodo y resumen de 3 líneas",
+                "input_path": "03_final/Volumen_{current_volume}/{chapter_id}_final.md",
+                "targets": [
+                    "bases_datos/indice_cronologico.md"
+                ]
+            },
+            {
+                "step": 6,
+                "agent_id": "director-arcos",
+                "role": "Mantenimiento del progreso y sincronización de paneles de control",
+                "input_path": "bases_datos/indice_cronologico.md",
+                "targets": [
+                    "bases_datos/control_progreso.json",
+                    "dashboard_global.md"
+                ]
+            }
+        ]
+    },
+    "studio_name": "Buca AI Translation Tool",
+    "kaomoji_palette": {
+        "catalog_name": "BATT Official Kaomoji Resource Palette",
+        "version": "1.5.0",
+        "usage_rule": "Los agentes deben seleccionar exclusivamente combinaciones de este catálogo para inyectar expresividad en las escenas, prohibiendo el uso de emojis comerciales a color dentro del texto literario para preservar el tono estético de la traducción.",
+        "matrix": {
+            "emociones_personajes": {
+                "ira_furia_hostilidad": [
+                    "(╬◣д◢)",
+                    "(╯°Д°)╯",
+                    "(怒 ಠ益ಠ)怒",
+                    "凸(｀△´＋)",
+                    "(`皿´#)",
+                    "( º益º )",
+                    "٩(╬ʘ益ʘ╬)۶",
+                    "(*｀Д´*)",
+                    "ヽ(≧Д≦)ノ",
+                    "＼(〇_ｏ)／凸",
+                    "(╬￣皿￣)",
+                    "(#`皿´)",
+                    "(*￣m￣)凸",
+                    "(`▲´╬)",
+                    "(`🔥益🔥´)"
+                ],
+                "tristeza_desesperacion_agoniadebucle": [
+                    "(╥﹏╥)",
+                    "(︶︹︺)",
+                    "（இ﹏இ）",
+                    "(ノ﹏ヽ)",
+                    "(_ _|||)",
+                    "(っ˘̩╭╮˘̩)っ",
+                    "・゜・(PД`q｡)・゜・",
+                    "(;´༎ຶД༎ຶ`)",
+                    "(PД`q｡)",
+                    "(T_T)",
+                    "(;﹏;)",
+                    "(-_ - )",
+                    "( ´༎ຶㅂ༎ຶ`)",
+                    "(｡╯︵╰｡)"
+                ],
+                "miedo_terror_vulnerabilidad": [
+                    "(ノдヽ)",
+                    "∑(O_O;)",
+                    "(◎_◎;)",
+                    "(((；゜Д゜)))",
+                    "＼(〇_ｏ)／",
+                    "( ;°Д°)",
+                    "(×_×)",
+                    "((((；´ﾟДﾟ)))",
+                    "∑(ﾟﾛﾟ〃)",
+                    "(゜_゜;)",
+                    "(((((((( ；ﾟДﾟ))))))))",
+                    "(((〇_ｏ;;)))",
+                    "Σ(T□T)",
+                    "(;゜0゜)"
+                ],
+                "burla_sarcasmo_desprecio": [
+                    "(¬_¬)",
+                    "┐(￣ヘ￣)┌",
+                    "(¬‿¬)",
+                    "(눈_눈)",
+                    "(ʘ‿ʘ)凸",
+                    "ヘ(＿ ＿ヘ)",
+                    "(￣^￣)",
+                    "σ(￣、￣=)",
+                    "( -_-)旦~",
+                    "( ﾟ,_ゝﾟ)",
+                    "╮(─▽─)╭",
+                    "¯\\_(ツ)_/¯",
+                    "( ಠ_ಠ)",
+                    "( ￣d￣)"
+                ],
+                "asombro_shock_incredulidad": [
+                    "ヽ(°〇°)ﾉ",
+                    "(⊙_⊙)",
+                    "o_O",
+                    "(□_□)",
+                    "(゜Д゜;)",
+                    "(ʘᗩʘ')",
+                    "w(°ｏ°)w",
+                    "ノ_<)",
+                    "Σ(□_□;)",
+                    "(*ﾟﾛﾟ)",
+                    "(‘A’ ;)",
+                    "(ﾟﾛﾟ;)",
+                    "w(ﾟｏﾟ)w",
+                    "Σ(゜ロ゜;)"
+                ],
+                "enamoramiento_aprecio_interes": [
+                    "( ˘ ³˘)♥",
+                    "( ͡° ͜ʖ ͡°)✨",
+                    "(♡‿♡)",
+                    "(*♡∀♡)",
+                    "(◕‿━)♡",
+                    "(/▽＼*)｡o○♡",
+                    "(*ﾉ▽ﾉ)",
+                    "ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚",
+                    "(*˘︶˘*).｡.:*♡",
+                    "(´﹃｀)♡",
+                    "(｡♥‿♥｡)",
+                    "♡( ◡‿─)✨",
+                    "(๑♡⌓♡๑)"
+                ]
+            },
+            "accion_y_entorno": {
+                "combate_cuerpo_a_cuerpo": [
+                    "(┛✧Д✧)┛彡┻━┻",
+                    "(ง'̀-'́)ง",
+                    "(っ•̀_•́)っ",
+                    "✊💥",
+                    "(ノ°益°)ノ",
+                    "ᕙ(⇀‸↼‶)ᕗ",
+                    "o(TヘTo)",
+                    "(ง ◉ _ ◉)ง💥",
+                    "👊( -_•)",
+                    "ᕙ(⇀‸↼‶)ᕗ💥",
+                    "(╬￣益￣)ง"
+                ],
+                "armas_y_artes_marciales": [
+                    "( ಠ_ಠ)︻デ═一",
+                    "︻デ═一💥",
+                    "⚔️",
+                    "🗡️✨",
+                    "╰( ͡° ͜ʖ ͡° )つ──☆*:・ﾟ",
+                    "(⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿",
+                    "⚔️(🔥_🔥)🗡️",
+                    "( 🥋-‿-)🥋",
+                    "▄︻̷̿┻̿═━一",
+                    "🗡️(╬◣д◢)⚔️"
+                ],
+                "tiempo_bucle_cronologia": [
+                    "⏳👁️",
+                    "⏳🌀",
+                    "⏳",
+                    "🌑",
+                    "🌀⏰",
+                    "⏳✨",
+                    "🌀⏳🚪",
+                    "⏰🔄🌀",
+                    "⌛✨👁️",
+                    "🌀🌑⏳"
+                ],
+                "hackeo_redes_tecnologia": [
+                    "💻✨",
+                    "🖥️🧐",
+                    "⌨️💥",
+                    "🌐",
+                    "🔌⚡",
+                    "📡✨",
+                    "💻(📡_📡)⚡",
+                    "🌐💻🔥",
+                    "💾⚡⌨️"
+                ]
+            },
+            "estados_fisicos_biologicos": {
+                "debilidad_tos_cancer": [
+                    "( >д<)💨",
+                    "( >д<)💨🩸",
+                    "💧",
+                    "(_ _;)",
+                    "(ヘ_ヘ)",
+                    "(+_+)",
+                    "(_ _|||)💨🩸",
+                    "(ノ﹏ヽ)💨🩸",
+                    "(;´༎ຶД༎ຶ`)💨🩸",
+                    "(x_x)💨"
+                ],
+                "aura_divina_omnisciencia": [
+                    "( ͡° 288 ͡°)✨",
+                    "(￣ω￣)",
+                    "🃏✨",
+                    "🃏🤡",
+                    "✨🧙‍♂️✨",
+                    "🌌✨",
+                    "(✧∀✧)✨",
+                    "👁️✨👁️",
+                    "🃏✨(👁️_👁️)✨🃏",
+                    "🌌✨🧙‍♂️✨🌌"
+                ]
+            }
+        }
+    },
+    "system_status": "RUNNING",
+    "novels": [
+        {
+            "id": "di_yi_wan_ci_chongsheng",
+            "name": "DI YI WAN CI CHONGSHENG",
+            "source_language": "zh",
+            "target_language": "es_global_neutro",
+            "status": "ACTIVE",
+            "files_origen": 11,
+            "origen_files_list": [
+                "capitulo_001.txt",
+                "capitulo_002.txt",
+                "capitulo_003.txt",
+                "capitulo_004.txt",
+                "capitulo_005.txt",
+                "capitulo_006.txt",
+                "capitulo_007.txt",
+                "capitulo_008.txt",
+                "capitulo_009.txt",
+                "capitulo_010.txt",
+                "capitulo_011.txt"
+            ],
+            "files_crudo": 20,
+            "crudo_files_list": [
+                "capitulo_001_crudo.txt",
+                "capitulo_001_lqa.txt",
+                "capitulo_002_crudo.txt",
+                "capitulo_002_lqa.txt",
+                "capitulo_003_crudo.txt",
+                "capitulo_003_lqa.txt",
+                "capitulo_004_crudo.txt",
+                "capitulo_004_lqa.txt",
+                "capitulo_005_crudo.txt",
+                "capitulo_005_lqa.txt",
+                "capitulo_006_crudo.txt",
+                "capitulo_006_lqa.txt",
+                "capitulo_007_crudo.txt",
+                "capitulo_007_lqa.txt",
+                "capitulo_008_crudo.txt",
+                "capitulo_008_lqa.txt",
+                "capitulo_009_crudo.txt",
+                "capitulo_009_lqa.txt",
+                "capitulo_010_crudo.txt",
+                "capitulo_010_lqa.txt"
+            ],
+            "files_final": 10,
+            "final_files_list": [
+                "capitulo_001_final.md",
+                "capitulo_002_final.md",
+                "capitulo_003_final.md",
+                "capitulo_004_final.md",
+                "capitulo_005_final.md",
+                "capitulo_006_final.md",
+                "capitulo_007_final.md",
+                "capitulo_008_final.md",
+                "capitulo_009_final.md",
+                "capitulo_010_final.md"
+            ],
+            "last_processed_chapter": 10,
+            "pending_chapters": 0,
+            "next_pending_chapter_num": 11,
+            "next_pending_chapter_name": "capitulo_011.txt",
+            "execution_history": [
+                {
+                    "chapter_id": "capitulo_001",
+                    "title_es": "Un Loco",
+                    "timestamp": "2026-05-27T21:59:30-04:00",
+                    "status": "COMPLETED",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ]
+                },
+                {
+                    "title_es": "La Decima Milesima Reencarnacion",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:38:37Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_002"
+                },
+                {
+                    "title_es": "Capitulo 3",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:38:46Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_003"
+                },
+                {
+                    "title_es": "Capitulo 4",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:38:55Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_004"
+                },
+                {
+                    "title_es": "Capitulo 5",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:39:04Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_005"
+                },
+                {
+                    "title_es": "Capitulo 6",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:39:13Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_006"
+                },
+                {
+                    "title_es": "Capitulo 7",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:39:23Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_007"
+                },
+                {
+                    "title_es": "Capitulo 8",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:39:32Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_008"
+                },
+                {
+                    "title_es": "Capitulo 9",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:39:41Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_009"
+                },
+                {
+                    "title_es": "Capitulo 10",
+                    "status": "COMPLETED",
+                    "timestamp": "2026-05-31T11:39:50Z",
+                    "processed_by_agents": [
+                        "traductor-universal",
+                        "corrector-lqa",
+                        "localizador-cultural",
+                        "extractor-historico",
+                        "archivista-indexador",
+                        "director-arcos"
+                    ],
+                    "chapter_id": "capitulo_010"
+                },
+                {
+                    "chapter_id": "capitulo_011",
+                    "title_es": "Fallo: capitulo_011",
+                    "timestamp": "2026-05-31T20:41:56.538Z",
+                    "status": "FAILED",
+                    "error": "API Error: models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+                    "processed_by_agents": []
+                }
+            ],
+            "pending_queue": []
+        },
+        {
+            "id": "el_reino_eterno",
+            "name": "EL REINO ETERNO",
+            "source_language": "ko",
+            "target_language": "es_global_neutro",
+            "status": "ACTIVE",
+            "files_origen": 1,
+            "origen_files_list": [
+                "capitulo_001.txt"
+            ],
+            "files_crudo": 0,
+            "crudo_files_list": [],
+            "files_final": 0,
+            "final_files_list": [],
+            "last_processed_chapter": 0,
+            "pending_chapters": 0,
+            "next_pending_chapter_num": 1,
+            "next_pending_chapter_name": "capitulo_001.txt",
+            "execution_history": [
+                {
+                    "chapter_id": "capitulo_001",
+                    "title_es": "Fallo: capitulo_001",
+                    "timestamp": "2026-05-31T20:44:28.827Z",
+                    "status": "FAILED",
+                    "error": "API Error: models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+                    "processed_by_agents": []
+                }
+            ],
+            "pending_queue": []
+        }
+    ]
+}

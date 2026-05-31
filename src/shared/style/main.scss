@@ -1,0 +1,3834 @@
+/**
+ * @file main.scss
+ * @description Estilo global de la aplicación consolidando variables, layouts y widgets de diseño.
+ * @author BATT Principal Automation Engineer
+ */
+
+@use './_buca-bootstrap.scss' as *;
+
+// Contenedor principal de consola
+.dashboard-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+// Cabecera Industrial
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border-card);
+    margin-bottom: 24px;
+
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        h1 {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            
+            span {
+                color: var(--color-primary);
+                text-shadow: 0 0 10px var(--color-primary-glow);
+            }
+        }
+    }
+
+    .system-status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+
+        .system-timestamp {
+            color: var(--color-text-muted);
+        }
+
+        #global-status-text {
+            font-weight: 700;
+            color: var(--color-accent-green);
+        }
+    }
+}
+
+// Grid de Consola (12 columnas)
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+}
+
+// Selectores de columnas
+.span-4 { grid-column: span 4; }
+.span-8 { grid-column: span 8; }
+.span-5 { grid-column: span 5; }
+.span-7 { grid-column: span 7; }
+
+// Tarjetas Glassmorphism
+.card {
+    @extend .glass-panel;
+    padding: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .card-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: var(--color-text-main);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+// Sidebar de Novelas
+.novels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.novel-item {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-color 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px) scale(1.01);
+        background: var(--color-bg-card);
+        border-color: rgba(var(--color-primary), 0.3);
+        box-shadow: 0 6px 20px rgba(var(--color-primary-glow), 0.08);
+        
+        [data-bs-theme="dark"] & {
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.12);
+        }
+    }
+
+    &.active {
+        background: var(--color-bg-card);
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 0 14px var(--color-primary-glow), var(--box-shadow-premium);
+        
+        [data-bs-theme="dark"] & {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.25), var(--box-shadow-premium);
+        }
+    }
+
+    .novel-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+
+        .novel-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .btn-delete-novel {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .novel-meta-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--color-text-muted);
+    }
+}
+
+// Botones de acción general
+.btn-action {
+    width: 100%;
+    padding: 10px;
+    background: var(--color-primary);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
+}
+
+// Zona de Carga Drag & Drop Premium
+.drag-drop-zone {
+    border: 2px dashed var(--color-border-card) !important;
+    border-radius: 16px !important;
+    padding: 16px 20px !important;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(var(--color-primary-glow), 0.01);
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover, &.dragover {
+        border-color: var(--color-primary) !important;
+        background: var(--color-surface-variant) !important;
+        
+        [data-bs-theme="dark"] & {
+            border-color: #38bdf8 !important;
+        }
+        
+        #upload-icon {
+            transform: translateY(-5px);
+            animation: var(--upload-bounce-animation);
+            color: var(--color-primary) !important;
+            
+            [data-bs-theme="dark"] & {
+                color: #38bdf8 !important;
+                filter: var(--filter-drop-shadow);
+            }
+        }
+    }
+
+    &.dragover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px var(--color-primary-glow);
+        border-style: solid !important;
+    }
+
+    #upload-icon {
+        font-size: 40px !important;
+        transition: transform 0.3s ease, color 0.3s ease, filter 0.3s ease;
+    }
+
+    .drag-drop-text {
+        font-size: 12px;
+        
+        strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        p {
+            color: var(--color-text-muted);
+        }
+    }
+}
+
+@keyframes bounceUpload {
+    0% { transform: translateY(-3px); }
+    100% { transform: translateY(-9px); }
+}
+
+// Controles de Pestañas
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+
+    .title-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+.tab-container {
+    display: flex;
+    gap: 8px;
+
+    .tab-btn {
+        background: none;
+        border: none;
+        color: var(--color-text-muted);
+        padding: 6px 12px;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.2s;
+
+        &:hover, &.active {
+            color: var(--color-text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        &.active {
+            border-bottom: 2px solid var(--color-primary);
+            border-radius: 6px 6px 0 0;
+        }
+    }
+}
+
+// Vistas de Pestañas
+.tab-view {
+    display: none;
+    
+    &.active {
+        display: block;
+    }
+}
+
+// Widgets de Estadísticas
+.stats-widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.progress-widget-box, .financial-widget-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 16px;
+
+    .widget-label {
+        font-size: 12px;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .widget-value {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .progress-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .progress-bar-container, .budget-progress-container {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-bottom: 12px;
+    }
+
+    .progress-bar-fill, .budget-progress-fill {
+        height: 100%;
+        border-radius: 3px;
+        transition: width 0.4s ease;
+    }
+
+    .progress-bar-fill {
+        background: var(--color-primary);
+    }
+
+    .progress-ratios {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--color-text-muted);
+    }
+}
+
+// Semáforos Financieros
+.budget-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.budget-value {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.budget-limit {
+    font-size: 11px;
+    color: var(--color-text-muted);
+}
+
+.budget-desc {
+    font-size: 10px;
+    color: var(--color-text-muted);
+}
+
+// Clases de Presupuesto
+.budget-ok {
+    color: var(--color-accent-green);
+    background-color: var(--color-accent-green); // Usado para fills de barras
+}
+.budget-warn {
+    color: var(--color-accent-yellow);
+    background-color: var(--color-accent-yellow);
+}
+.budget-danger {
+    color: var(--color-accent-red);
+    background-color: var(--color-accent-red);
+}
+
+// Contadores Físicos
+.physical-counters-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.phys-box {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-card) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                border-color 0.3s ease;
+    cursor: pointer;
+    
+    &:hover {
+        transform: translateY(-4px);
+    }
+
+    &.phys-origen {
+        border-left: 4px solid var(--color-accent-green) !important;
+        &:hover {
+            border-color: var(--color-accent-green) !important;
+            box-shadow: var(--box-shadow-premium), 0 8px 24px var(--color-accent-green-glow);
+        }
+    }
+    &.phys-crudo {
+        border-left: 4px solid var(--color-accent-yellow) !important;
+        &:hover {
+            border-color: var(--color-accent-yellow) !important;
+            box-shadow: var(--box-shadow-premium), 0 8px 24px var(--color-accent-yellow-glow);
+        }
+    }
+    &.phys-final {
+        border-left: 4px solid var(--color-primary) !important;
+        &:hover {
+            border-color: var(--color-primary) !important;
+            box-shadow: var(--box-shadow-premium), 0 8px 24px var(--color-primary-glow);
+        }
+    }
+}
+
+
+// Tablas Generales
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-top: 12px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        text-align: left;
+
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .no-history-msg {
+            text-align: center;
+            padding: 24px;
+            color: var(--color-text-muted);
+        }
+    }
+}
+
+// Badges e Indicadores
+.badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.system-version-badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--color-primary);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.lang-badge {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-main);
+    font-family: var(--font-mono);
+}
+
+.post-badge { background: rgba(74, 222, 128, 0.15); color: var(--color-accent-green); }
+.delete-badge { background: rgba(248, 113, 113, 0.15); color: var(--color-accent-red); }
+.get-badge { background: rgba(56, 189, 248, 0.15); color: var(--color-primary); }
+
+.status-badge-completed {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--color-accent-green);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.agent-compact-badge {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+}
+
+.agents-badges-flex {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+// Indicadores luminosos de pulso
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent-green);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--color-accent-green);
+    
+    &.active {
+        animation: var(--pulse-animation-dot);
+    }
+}
+
+@keyframes pulseDot {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+// Lector de Capítulos
+.reader-header {
+    margin-bottom: 16px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    cursor: pointer;
+
+    option {
+        background: var(--color-bg-base);
+    }
+}
+
+.reader-body {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 24px;
+    min-height: 300px;
+    max-height: 480px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+
+    .reader-placeholder {
+        text-align: center;
+        color: var(--color-text-muted);
+        padding-top: 100px;
+    }
+
+    .reader-loading {
+        text-align: center;
+        color: var(--color-primary);
+        font-family: var(--font-mono);
+    }
+
+    .reader-error {
+        color: var(--color-accent-red);
+    }
+
+    .markdown-rendered {
+        white-space: pre-wrap;
+    }
+}
+
+// Ventanas Modales
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 999;
+
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.modal-card {
+    @extend .glass-panel;
+    width: 480px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+
+        label {
+            display: block;
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--color-text-main);
+            font-family: var(--font-sans);
+
+            &:focus {
+                border-color: var(--color-primary);
+                outline: none;
+            }
+        }
+    }
+
+    .form-group-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 24px;
+
+        .btn-cancel, .btn-submit {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-main);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .btn-submit {
+            background: var(--color-primary);
+            border: none;
+            color: #000;
+
+            &:hover {
+                filter: brightness(1.1);
+            }
+        }
+    }
+}
+
+// Matriz de Diagnósticos
+.status-diag {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    
+    &.fixed {
+        background: rgba(74, 222, 128, 0.1);
+        color: var(--color-accent-green);
+    }
+}
+
+// =========================================================================
+// SASS PREMIUM ADICIONAL PARA TELEMETRÍA Y CONTROL DE AGENTES (BATT CORE)
+// =========================================================================
+
+.agentic-orchestrator-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .orchestrator-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 8px;
+    }
+
+    .env-status-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 700;
+        color: #4ade80;
+
+        .status-pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulseGreen 1.8s infinite;
+        }
+    }
+
+    .orchestrator-body {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .routing-map-container, .guardrails-container {
+        background: var(--color-surface-variant);
+        border: 1px solid var(--color-border-card);
+        border-radius: 12px;
+        padding: 12px 16px;
+    }
+
+    .routing-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+        font-family: var(--font-mono);
+    }
+
+    .routing-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        font-family: var(--font-mono);
+        margin-bottom: 6px;
+        &:last-child { margin-bottom: 0; }
+
+        .agent-role {
+            color: var(--color-text-main);
+        }
+        .arrow-indicator {
+            color: var(--color-text-muted);
+            opacity: 0.5;
+            font-size: 10px;
+        }
+        .model-tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 4px;
+            &.tag-pro {
+                background: rgba(56, 189, 248, 0.1);
+                color: var(--color-primary);
+                border: 1px solid rgba(56, 189, 248, 0.2);
+            }
+            &.tag-flash {
+                background: rgba(168, 85, 247, 0.1);
+                color: #c084fc;
+                border: 1px solid rgba(168, 85, 247, 0.2);
+            }
+        }
+    }
+
+    .guardrail-item {
+        margin-bottom: 8px;
+        &:last-child { margin-bottom: 0; }
+
+        .guardrail-desc {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 4px;
+            color: var(--color-text-muted);
+
+            .guardrail-status-tag {
+                font-size: 9px;
+                font-weight: 800;
+                padding: 0px 4px;
+                border-radius: 3px;
+                &.tag-ok {
+                    background: rgba(34, 197, 94, 0.15);
+                    color: #4ade80;
+                }
+            }
+        }
+
+        .guardrail-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+
+            .guardrail-fill {
+                height: 100%;
+                background: linear-gradient(90deg, var(--color-primary), #22c55e);
+                border-radius: 2px;
+            }
+        }
+    }
+
+    .orchestrator-footer {
+        margin-top: 8px;
+        font-size: 10px;
+        text-align: center;
+        color: var(--color-text-muted);
+        opacity: 0.7;
+    }
+}
+
+.pipeline-progress-card {
+    .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .highlight-value {
+        color: var(--color-primary);
+        text-shadow: 0 0 10px var(--color-primary-glow);
+        font-size: 24px !important;
+        font-family: var(--font-mono);
+    }
+
+    .progress-glow-bar {
+        background: linear-gradient(90deg, var(--color-primary), #60a5fa);
+        box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+    }
+
+    .ratio-item {
+        font-size: 11px;
+        strong {
+            font-size: 12px;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+        }
+        .badge-processed {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+        }
+        .badge-pending {
+            background: rgba(234, 179, 8, 0.1);
+            color: #facc15;
+        }
+    }
+
+    .pipeline-explanation-box {
+        background: var(--color-surface-variant);
+        border: 1px solid var(--color-border-card);
+        border-radius: 12px;
+        padding: 12px;
+        margin-top: 14px;
+
+        .explanation-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--color-text-main);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .explanation-text {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .pipeline-steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+
+            li {
+                font-size: 10px;
+                color: var(--color-text-muted);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                line-height: 1.2;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    background: var(--color-primary-glow);
+                    color: var(--color-primary);
+                    font-weight: 800;
+                    font-size: 9px;
+                    font-family: var(--font-mono);
+                }
+            }
+        }
+
+        .explanation-footer-note {
+            margin-top: 8px;
+            font-size: 9px;
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border-card);
+            padding-top: 6px;
+        }
+    }
+}
+
+// Sección de Contadores de Carpetas Detallados
+.section-title-premium {
+    margin: 28px 0 16px 0;
+    border-left: 3px solid var(--color-primary);
+    padding-left: 12px;
+
+    .title-text {
+        display: block;
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--color-text-main);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .title-sub {
+        font-size: 11px;
+        color: var(--color-text-muted);
+    }
+}
+
+.glass-card-nested {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-radius: 8px;
+    padding: 16px;
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+}
+
+.phys-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.text-green { color: #4ade80 !important; }
+.text-yellow { color: #facc15 !important; }
+.text-blue { color: #38bdf8 !important; }
+
+.phys-files-list-container {
+    margin-top: 12px;
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    border-radius: 12px;
+    padding: 12px;
+    max-height: 140px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-content: flex-start;
+
+    &.flex-column {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+    .no-files-msg {
+        font-size: 11px;
+        color: var(--color-text-muted);
+        font-style: italic;
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+}
+
+.file-compact-badge {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    border: 1px solid var(--color-border-card);
+    transition: all 0.2s ease;
+
+    &.badge-origen {
+        background: var(--color-accent-green-glow);
+        color: var(--color-accent-green);
+        border-color: rgba(20, 164, 77, 0.2);
+    }
+    &.badge-final {
+        background: var(--color-primary-glow);
+        color: var(--color-primary);
+        border-color: rgba(11, 87, 208, 0.2);
+        
+        [data-bs-theme="dark"] & {
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+    }
+}
+
+// Estructura de agrupamientos en crudo
+.crudo-group-card {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .group-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--color-text-main);
+        font-family: var(--font-mono);
+    }
+
+    .group-files-flex {
+        display: flex;
+        gap: 6px;
+
+        .file-compact-badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            
+            &.badge-crudo {
+                background: var(--color-accent-yellow-glow);
+                color: var(--color-accent-yellow);
+                border-color: rgba(228, 161, 27, 0.2);
+            }
+            &.badge-lqa {
+                background: rgba(168, 85, 247, 0.08);
+                color: var(--color-accent-pink);
+                border-color: rgba(168, 85, 247, 0.2);
+                
+                [data-bs-theme="dark"] & {
+                    background: rgba(244, 114, 182, 0.08);
+                    color: var(--color-accent-pink);
+                    border-color: rgba(244, 114, 182, 0.2);
+                }
+            }
+        }
+    }
+}
+
+// Mejoras de la Tabla y Encabezado de Transacciones
+.history-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    h3 {
+        font-size: 14px !important;
+        font-weight: 800;
+        color: var(--color-text-main);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .origen-status-summary-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--color-surface-variant);
+        border: 1px solid var(--color-border-card);
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 11px;
+        color: var(--color-text-muted);
+
+        strong {
+            color: var(--color-text-main);
+        }
+
+        .divider {
+            color: var(--color-border-card);
+        }
+    }
+}
+
+// Clases de filas de tabla (Completadas vs Pendientes)
+.row-completed {
+    background: rgba(34, 197, 94, 0.005);
+    &:hover {
+        background: rgba(34, 197, 94, 0.015) !important;
+    }
+}
+
+.row-pending {
+    background: rgba(234, 179, 8, 0.002);
+    &:hover {
+        background: rgba(234, 179, 8, 0.01) !important;
+    }
+
+    .file-tag-origen-only {
+        font-size: 10px;
+        color: var(--color-text-muted);
+        font-family: var(--font-mono);
+        margin-left: 4px;
+        opacity: 0.6;
+    }
+}
+
+.status-badge-pending {
+    background: rgba(234, 179, 8, 0.1);
+    color: #facc15;
+    border: 1px solid rgba(234, 179, 8, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.text-muted-italics {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 11px;
+}
+
+// Botón Premium de Acción de Pipeline
+.btn-premium-action {
+    background: linear-gradient(135deg, var(--color-primary), #60a5fa);
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.2);
+
+    &:hover:not(:disabled) {
+        filter: brightness(1.15);
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        transform: translateY(-1px);
+    }
+
+    &.processing {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: rgba(255, 255, 255, 0.4) !important;
+        box-shadow: none !important;
+    }
+}
+
+// Badge de idioma universal rediseñado con Tooltip
+.lang-badge {
+    position: relative;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15)) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    color: #bae6fd !important;
+    cursor: help;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.1);
+
+    &::after {
+        content: "Traducción Universal BATT Core: Capaz de localizar de manera universal ideogramas, dialectos de época e historia a Castellano Global Neutro estético.";
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #090d16;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: normal;
+        text-transform: none;
+        color: rgba(255, 255, 255, 0.95);
+        width: 220px;
+        white-space: normal;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s, transform 0.2s;
+        z-index: 100;
+    }
+
+    &:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-2px);
+    }
+}
+
+@keyframes pulseGreen {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+// Banner de alerta para capítulos pendientes
+.pending-alert-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.08), rgba(244, 63, 94, 0.04));
+    border: 1px dashed rgba(234, 179, 8, 0.3);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.05);
+    animation: borderGlow 3s infinite alternate;
+
+    .alert-icon-pulse {
+        font-size: 20px;
+        background: rgba(234, 179, 8, 0.15);
+        border: 1px solid rgba(234, 179, 8, 0.3);
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #facc15;
+        animation: pulseYellow 2s infinite;
+        flex-shrink: 0;
+    }
+
+    .alert-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .alert-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #facc15;
+            letter-spacing: 0.5px;
+        }
+
+        .alert-description {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            
+            strong {
+                color: var(--color-text-main);
+            }
+            code {
+                background: rgba(0,0,0,0.2);
+                padding: 1px 4px;
+                border-radius: 4px;
+                font-family: var(--font-mono);
+                font-size: 11px;
+            }
+        }
+    }
+
+    .btn-delegate-all-pending {
+        flex-shrink: 0;
+        padding: 8px 16px;
+        font-size: 11px;
+    }
+}
+
+// Vista del lector para capítulos pendientes
+.reader-pending-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+
+    .reader-pending-icon-pulse {
+        font-size: 28px;
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: var(--color-primary);
+        animation: pulseBlue 2s infinite;
+        margin-bottom: 16px;
+    }
+
+    .reader-pending-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--color-text-main);
+        margin-bottom: 8px;
+    }
+
+    .reader-pending-description {
+        font-size: 13px;
+        color: var(--color-text-muted);
+        max-width: 480px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+
+        strong {
+            color: var(--color-primary);
+        }
+        code {
+            background: rgba(255,255,255,0.05);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+    }
+
+    .btn-delegate-translation-reader {
+        padding: 10px 20px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+}
+
+@keyframes pulseYellow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.5); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(234, 179, 8, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+}
+
+@keyframes pulseBlue {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(56, 189, 248, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+@keyframes borderGlow {
+    from { border-color: rgba(234, 179, 8, 0.2); }
+    to { border-color: rgba(234, 179, 8, 0.5); }
+}
+
+// Estilo para options deshabilitadas/pendientes en dropdowns
+.option-pending {
+    color: var(--color-text-muted) !important;
+    font-style: italic !important;
+    background: #0f172a !important;
+}
+
+// ==========================================================================
+// RENDERIZADO LITERARIO PREMIUM Y KAOMOJIS (Fase 10)
+// ==========================================================================
+
+.markdown-rendered {
+    font-family: 'Georgia', 'Lora', 'Outfit', serif;
+    color: #e2e8f0;
+    line-height: 1.8;
+    font-size: 16px;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+
+    h1, h2, h3 {
+        font-family: 'Outfit', 'Inter', sans-serif;
+        color: var(--color-primary);
+        text-shadow: 0 0 12px var(--color-primary-glow);
+        font-weight: 700;
+        margin-top: 24px;
+        margin-bottom: 16px;
+        line-height: 1.3;
+    }
+
+    h1 { font-size: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 18px; }
+
+    .prose-paragraph {
+        margin-bottom: 16px;
+        text-align: justify;
+        letter-spacing: 0.2px;
+    }
+
+    .translator-note {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        background: linear-gradient(90deg, rgba(56, 189, 248, 0.06), rgba(0, 0, 0, 0));
+        border-left: 3px solid var(--color-primary);
+        padding: 12px 16px;
+        margin: 20px 0;
+        color: #93c5fd;
+        border-radius: 0 6px 6px 0;
+        line-height: 1.6;
+        font-style: italic;
+
+        strong {
+            color: #38bdf8;
+            font-family: var(--font-mono);
+            font-style: normal;
+        }
+    }
+
+    .reader-divider {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+        margin: 32px 0;
+    }
+
+    strong {
+        color: #f1f5f9;
+        font-weight: 700;
+    }
+
+    em {
+        color: #cbd5e1;
+        font-style: italic;
+    }
+
+    // Estilo animado para Kaomojis
+    .kaomoji-highlight {
+        display: inline-block;
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.15);
+        color: #67e8f9;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 1px 6px;
+        border-radius: 4px;
+        margin: 0 2px;
+        vertical-align: middle;
+        text-shadow: 0 0 6px rgba(56, 189, 248, 0.3);
+        animation: kaomojiGlow 4s infinite ease-in-out;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.15) rotate(2deg);
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.30);
+            color: #22d3ee;
+            cursor: default;
+        }
+    }
+}
+
+@keyframes kaomojiGlow {
+    0%, 100% {
+        box-shadow: 0 0 2px rgba(56, 189, 248, 0.1);
+        border-color: rgba(56, 189, 248, 0.15);
+    }
+    50% {
+        box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);
+        border-color: rgba(56, 189, 248, 0.40);
+        background: rgba(56, 189, 248, 0.12);
+    }
+}
+
+// =========================================================================
+// SISTEMA DE DISEÑO DE ALTA GAMA GOOGLE GEMINI — TEMAS ADAPTATIVOS
+// =========================================================================
+
+// Texto con gradiente interactivo de Google Gemini
+.gemini-gradient-text {
+    background: var(--gemini-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    background-size: 200% auto;
+    animation: geminiShine 5s ease infinite;
+}
+
+@keyframes geminiShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+// Contenedores Premium con Glassmorphism adaptable
+.card-premium {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    box-shadow: var(--box-shadow-premium);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--box-shadow-premium), var(--card-glow-shadow);
+        border-color: rgba(var(--color-primary), 0.3);
+        
+        [data-bs-theme="dark"] & {
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+    }
+}
+
+// Encabezados adaptables
+.border-bottom-theme {
+    border-bottom: 1px solid var(--color-border-card) !important;
+}
+
+// Pestañas Estilo Google (Píldoras flotantes Gemini)
+.tab-container-new {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    transition: all 0.25s ease;
+    
+    .tab-btn-new {
+        background: transparent;
+        color: var(--color-text-muted);
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        border: 1px solid transparent;
+
+        &:hover {
+            color: var(--color-text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        &.active {
+            color: var(--color-primary) !important;
+            background: var(--color-bg-card) !important;
+            border-color: var(--color-border-card);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+    }
+}
+
+// Adaptación de inputs y selects estilo Google/Gemini
+.form-select, .form-control {
+    background: var(--color-bg-base) !important;
+    border: 1px solid var(--color-border-card) !important;
+    color: var(--color-text-main) !important;
+    border-radius: 8px !important;
+    font-family: var(--font-sans);
+    padding: 10px 14px !important;
+    transition: all 0.2s ease;
+
+    &:focus {
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
+        outline: none;
+    }
+    
+    [data-bs-theme="light"] & {
+        background: #ffffff !important;
+        border-color: #dee2e6 !important;
+        color: #212529 !important;
+    }
+
+    option {
+        background: var(--color-bg-base);
+        color: var(--color-text-main);
+        
+        [data-bs-theme="light"] & {
+            background: #ffffff;
+            color: #212529;
+        }
+    }
+}
+
+// Botones de acción Premium (Google Pill Buttons)
+.btn-premium-action {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-pink)) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    letter-spacing: 0.25px !important;
+    padding: 10px 24px !important;
+    box-shadow: 0 4px 12px var(--color-primary-glow) !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+
+    &:hover:not(:disabled) {
+        transform: scale(1.03);
+        filter: brightness(1.08);
+        box-shadow: 0 6px 16px var(--color-primary-glow) !important;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed !important;
+    }
+}
+
+.btn-premium-secondary {
+    background: var(--color-surface-variant) !important;
+    color: var(--color-text-main) !important;
+    border: 1px solid var(--color-border-card) !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    padding: 10px 24px !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+
+    &:hover:not(:disabled) {
+        background: var(--color-border-card) !important;
+    }
+}
+
+// Interruptor de Tema (Theme Switch)
+.theme-switch-btn {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    color: var(--color-text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: var(--box-shadow-premium);
+    flex-shrink: 0; // Prevent deformation when layout is squeezed
+
+    &:hover {
+        transform: rotate(15deg) scale(1.05);
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+    }
+}
+
+// Estabilización de la Tipografía en Markdown Reader
+.markdown-rendered {
+    color: var(--color-text-main) !important;
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+
+    strong {
+        color: var(--color-primary) !important;
+        font-weight: 700 !important;
+    }
+
+    em {
+        color: var(--color-text-muted) !important;
+        font-style: italic !important;
+    }
+    
+    .reader-divider {
+        background: linear-gradient(90deg, transparent, var(--color-border-card), transparent) !important;
+    }
+}
+
+// Tarjetas anidadas de Glassmorphism
+.glass-card-nested {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-border-card);
+    border-radius: 12px;
+    padding: 18px;
+    transition: all 0.2s ease;
+    
+    [data-bs-theme="light"] & {
+        background: #f8f9fa !important;
+        border-color: #e0e0e0 !important;
+    }
+}
+
+// Tabla responsiva y adaptable
+.history-table-wrapper-new {
+    border-radius: 16px;
+    border: 1px solid var(--color-border-card);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-premium);
+    background: var(--color-bg-card);
+    
+    table {
+        margin: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        
+        thead {
+            tr {
+                th {
+                    background: var(--color-surface-variant);
+                    color: var(--color-text-muted);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    font-size: 11px;
+                    letter-spacing: 0.8px;
+                    border-bottom: 1px solid var(--color-border-card);
+                    padding: 16px 20px;
+                }
+            }
+        }
+        
+        tbody {
+            tr {
+                background: transparent;
+                border-bottom: 1px solid var(--color-border-card);
+                transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+                
+                &:last-child {
+                    border-bottom: none;
+                }
+                
+                &:hover {
+                    background: rgba(138, 180, 248, 0.05) !important;
+                    box-shadow: inset 4px 0 0 0 var(--color-primary);
+                    
+                    td {
+                        color: var(--color-text-main);
+                    }
+                    
+                    td:first-child {
+                        border-top-left-radius: 4px;
+                        border-bottom-left-radius: 4px;
+                    }
+                    td:last-child {
+                        border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                    }
+                }
+                
+                td {
+                    color: var(--color-text-muted);
+                    padding: 16px 20px;
+                    transition: color 0.2s ease, background-color 0.2s ease;
+                    border-bottom: 1px solid var(--color-border-card);
+                }
+            }
+        }
+    }
+}
+
+
+// Rejilla de widgets adaptativa
+.stats-widgets-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+// Ajustes del visor de código
+.config-code-box-new {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px;
+    padding: 16px;
+
+    pre {
+        max-height: 220px;
+        overflow-y: auto;
+        font-family: var(--font-mono);
+        margin-bottom: 0;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+    
+    [data-bs-theme="light"] & {
+        background: #1e1f20 !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+        
+        h4, pre {
+            color: #e3e3e3 !important;
+        }
+    }
+}
+
+// Estilos premium para Diagnostics y Kaomojis (Google Gemini Style)
+.kaomoji-category-card-new {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--box-shadow-premium);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+    
+    &:hover {
+        border-color: rgba(var(--color-primary), 0.2);
+    }
+}
+
+.kaomoji-pill-new {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+        transform: translateY(-2px);
+        background: var(--color-primary-glow);
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        box-shadow: 0 4px 12px var(--color-primary-glow);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+    
+    &.btn-copied-success {
+        background: var(--color-accent-green-glow) !important;
+        border-color: var(--color-accent-green) !important;
+        color: var(--color-accent-green) !important;
+        box-shadow: 0 4px 12px var(--color-accent-green-glow) !important;
+        animation: scalePulse 0.3s ease;
+    }
+}
+
+@keyframes scalePulse {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.16); }
+    50% { transform: scale(0.92); }
+    75% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+.diagnostics-badge-endpoint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+
+// Barra de Navegación Rápida Inferior (Estilo PWA)
+.bottom-nav-bar-responsive {
+    background: var(--color-bg-card) !important;
+    border-top: 1px solid var(--color-border-card) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030; // Bootstrap fixed-bottom z-index
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15) !important;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+    
+    .bottom-nav-item {
+        color: var(--color-text-muted) !important;
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        flex: 1;
+        text-align: center;
+        
+        span.material-symbols-outlined {
+            font-size: 22px;
+            margin-bottom: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        &:hover, &.active {
+            color: var(--color-primary) !important;
+            
+            span.material-symbols-outlined {
+                transform: translateY(-2px);
+                font-variation-settings: 'FILL' 1, 'wght' 600;
+            }
+        }
+    }
+}
+
+// Padding inferior en pantallas táctiles y móviles para evitar que el contenido quede oculto detrás de la barra inferior
+@media (max-width: 1199.98px) {
+    body {
+        padding-bottom: 80px !important;
+    }
+}
+
+// Estilos de Ventanas Modales de Bootstrap v5.3.8 (Estilo Gemini)
+.modal {
+    backdrop-filter: var(--backdrop-blur-amount);
+    -webkit-backdrop-filter: var(--backdrop-blur-amount);
+    transition: opacity 0.15s linear;
+}
+
+.modal-content {
+    background: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border-card) !important;
+    border-radius: 20px !important;
+    box-shadow: var(--box-shadow-premium-current) !important;
+    backdrop-filter: var(--backdrop-blur-modal) !important;
+    -webkit-backdrop-filter: var(--backdrop-blur-modal) !important;
+    overflow: hidden;
+    
+    [data-bs-theme="light"] & {
+        background: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .modal-header {
+        border-bottom: 1px solid var(--color-border-card) !important;
+        padding: 20px 24px !important;
+        
+        .btn-close {
+            background-color: var(--color-surface-variant);
+            border-radius: 50%;
+            padding: 8px;
+            opacity: 0.7;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                opacity: 1;
+                background-color: var(--color-border-card);
+                transform: rotate(90deg);
+            }
+        }
+    }
+    
+    .modal-body {
+        padding: 24px !important;
+    }
+    
+    .modal-footer {
+        border-top: 1px solid var(--color-border-card) !important;
+        padding: 16px 24px !important;
+    }
+}
+
+// Micro-animación premium de entrada de modales de Bootstrap
+.modal.fade .modal-dialog {
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
+
+// ==========================================
+// 4. LECTOR LITERARIO PREMIUM (ESTILO KINDLE)
+// ==========================================
+.reader-body-premium {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    border-radius: 20px;
+    padding: 32px;
+    min-height: 350px;
+    box-shadow: var(--box-shadow-premium);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    // Estilo sepia/crema en modo claro, oscuro relajado en modo oscuro
+    [data-bs-theme="light"] & {
+        background-color: #fdfaf2 !important; // Sepia/crema premium muy relajante para leer
+        border-color: #e8dfd3 !important;
+        box-shadow: 0 4px 20px rgba(216, 203, 187, 0.25);
+    }
+
+    [data-bs-theme="dark"] & {
+        background-color: #12131a !important; // Modo oscuro profundo y relajante
+        border-color: #1f212a !important;
+    }
+}
+
+// Estructura de texto literario (Prose)
+.markdown-rendered {
+    font-family: 'Lora', 'Georgia', 'Merriweather', serif;
+    font-size: 17.5px;
+    line-height: 1.85;
+    color: var(--color-text-main);
+    letter-spacing: 0.015em;
+    max-width: 780px;
+    margin: 0 auto;
+
+    [data-bs-theme="light"] & {
+        color: #2c241e; // Color marrón oscuro/carbón muy legible para lectura prolongada
+    }
+
+    [data-bs-theme="dark"] & {
+        color: #e2e4ea;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Outfit', 'Inter', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-top: 16px;
+        margin-bottom: 24px;
+        background: linear-gradient(135deg, var(--color-primary), #60a5fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    p.prose-paragraph {
+        text-align: justify;
+        text-indent: 2.5em; // Clásica sangría de primera línea en novelas literarias
+        margin-bottom: 16px;
+    }
+
+    p.prose-paragraph:first-of-type {
+        text-indent: 0; // El primer párrafo no lleva sangría (regla clásica de estilo editorial)
+    }
+
+    // Bloque de notas del traductor
+    blockquote.translator-note {
+        font-family: 'Outfit', 'Inter', sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        background: var(--color-surface-variant) !important;
+        border-left: 4px solid var(--color-primary) !important;
+        padding: 16px !important;
+        border-radius: 12px;
+        margin: 24px 0;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+
+        [data-bs-theme="light"] & {
+            background: #f4eae1 !important;
+            border-left-color: #c084fc !important;
+            color: #5c4d3c !important;
+        }
+    }
+
+    // Línea divisora literaria
+    hr.reader-divider {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--color-border-card), transparent);
+        margin: 32px 0;
+        opacity: 0.8;
+
+        [data-bs-theme="light"] & {
+            background: linear-gradient(to right, transparent, #e8dfd3, transparent);
+        }
+    }
+
+    // Badge animado interactivo para Kaomojis
+    .kaomoji-highlight {
+        font-family: 'Inter', sans-serif !important;
+        display: inline-block;
+        font-size: 0.85em;
+        vertical-align: middle;
+        background: var(--color-primary-glow) !important;
+        color: var(--color-primary) !important;
+        border: 1px solid var(--color-border-card) !important;
+        border-radius: 8px !important;
+        padding: 2px 8px !important;
+        margin: 0 4px;
+        font-weight: 600;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: help;
+
+        &:hover {
+            transform: scale(1.1) rotate(1deg);
+            background: linear-gradient(135deg, var(--color-primary), #60a5fa) !important;
+            color: #000 !important;
+            box-shadow: 0 4px 12px var(--color-primary-glow);
+        }
+
+        [data-bs-theme="light"] & {
+            background: rgba(138, 180, 248, 0.15) !important;
+            border-color: rgba(138, 180, 248, 0.3) !important;
+            color: #1a73e8 !important;
+        }
+    }
+}
+
+// ==========================================
+// 5. SIDEBAR COLAPSABLE ESTILO GEMINI
+// ==========================================
+.btn-toggle-sidebar {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-card);
+    border-radius: 12px;
+    padding: 8px;
+    color: var(--color-text-main);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+        background: var(--color-border-card);
+        color: var(--color-primary);
+        transform: scale(1.05);
+        
+        [data-bs-theme="dark"] & {
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    #layout-sidebar {
+        transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                    max-width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                    flex 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                    padding 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                    margin 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    #main-telemetry-panel-container {
+        transition: flex 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                    max-width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    body.sidebar-collapsed {
+        #layout-sidebar {
+            flex: 0 0 0% !important;
+            max-width: 0% !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            overflow: hidden !important;
+        }
+    }
+}
+
+// ==========================================
+// 6. MODO DE BAJO RENDIMIENTO / AHORRO DE ENERGÍA
+// ==========================================
+body.low-perf-mode {
+    --bg-glow-display: none !important;
+    --bg-glow-animation: none !important;
+    --backdrop-blur-amount: none !important;
+    --backdrop-blur-modal: none !important;
+    --box-shadow-premium-current: none !important;
+    --transition-speed-hover: 0s !important;
+    --filter-drop-shadow: none !important;
+    --pulse-animation-dot: none !important;
+    --upload-bounce-animation: none !important;
+
+    // Desactivar transiciones y animaciones que consumen GPU
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    // Fondos sólidos de alta legibilidad
+    .glass-panel, .card, .card-premium, .glass-card, .glass-card-nested, .modal-content, .phys-box, .kaomoji-category-card-new, .config-code-box-new {
+        background-color: var(--color-bg-base) !important;
+        background: var(--color-bg-base) !important;
+        border: 1px solid var(--color-border-card) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    // Sobreescritura específica de hover para prevenir transformaciones de escala en gama baja
+    .novel-item:hover, .phys-box:hover, .kaomoji-pill-new:hover, .btn-toggle-sidebar:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        background: var(--color-surface-variant) !important;
+    }
+
+    // Indicador estático de red
+    .pulse-dot.active {
+        animation: none !important;
+    }
+
+    // Inputs de alto contraste forzados
+    .form-control, .form-select {
+        background-color: var(--color-bg-base) !important;
+        color: var(--color-text-main) !important;
+        border: 1px solid var(--color-text-muted) !important;
+    }
+}
+
+// ==========================================
+// 7. GOOGLE AI STUDIO THREE-PANEL LAYOUT (BATT)
+// ==========================================
+
+/* Layout Trilateral Fijo para Escritorio (lg >= 992px) */
+@media (min-width: 992px) {
+    .dashboard-container-new {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #layout-header {
+        margin-bottom: 0 !important;
+        padding: 12px 16px !important;
+        border-bottom: 1px solid var(--color-border-card) !important;
+        flex: 0 0 auto;
+    }
+
+    .main-layout-row {
+        display: flex;
+        flex: 1 1 0%;
+        min-height: 0; // Importante para scroll de flexbox
+        margin: 0 !important;
+        height: calc(100vh - 60px); // Ajustar según altura de cabecera
+    }
+
+    /* Columna 1: Barra Lateral Izquierda Compacta */
+    #layout-sidebar {
+        flex: 0 0 240px !important;
+        max-width: 240px !important;
+        height: 100%;
+        border-right: 1px solid var(--color-border-card) !important;
+        background-color: var(--color-bg-base) !important;
+        padding: 16px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-y: auto;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        transition: transform 0.2s, flex 0.2s, max-width 0.2s;
+    }
+
+    /* Columna 2: Panel Central de Trabajo (Playground) */
+    #main-telemetry-panel-container {
+        flex: 1 1 0% !important;
+        max-width: none !important;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: var(--color-bg-card) !important;
+    }
+
+    #main-telemetry-panel {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 24px !important;
+    }
+
+    .spa-view-content-new {
+        flex: 1 1 0%;
+        overflow-y: auto;
+        min-height: 0;
+        padding-right: 4px;
+    }
+
+    /* Columna 3: Panel Derecho (Run Settings) */
+    #layout-sidebar-right {
+        flex: 0 0 320px !important;
+        max-width: 320px !important;
+        height: 100%;
+        border-left: 1px solid var(--color-border-card) !important;
+        background-color: var(--color-bg-base) !important;
+        padding: 20px !important;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        margin: 0 !important;
+        transition: flex 0.2s, max-width 0.2s, border-left-color 0.2s;
+    }
+
+    /* Estados Colapsados */
+    body.sidebar-collapsed {
+        #layout-sidebar {
+            flex: 0 0 0% !important;
+            max-width: 0% !important;
+            padding: 0 !important;
+            border-right: none !important;
+            overflow: hidden !important;
+            visibility: hidden !important;
+        }
+    }
+
+    body.settings-collapsed {
+        #layout-sidebar-right {
+            flex: 0 0 0% !important;
+            max-width: 0% !important;
+            padding: 0 !important;
+            border-left: none !important;
+            overflow: hidden !important;
+            visibility: hidden !important;
+        }
+    }
+}
+
+/* Ajustes generales para el estilo plano de Google AI Studio */
+.card-premium, .glass-card {
+    background-color: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border-card) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Caja de Prompt Estilo Google AI Studio (En la base del lector/Playground) */
+.ai-studio-prompt-box-wrapper {
+    margin-top: 16px;
+    border: 1px solid var(--color-border-card);
+    background-color: var(--color-bg-card);
+    border-radius: 24px;
+    padding: 8px 16px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.15s ease;
+
+    &:focus-within {
+        border-color: var(--color-primary);
+    }
+
+    .prompt-textarea {
+        background: transparent;
+        border: none;
+        outline: none;
+        resize: none;
+        color: var(--color-text-main);
+        font-family: var(--font-sans);
+        font-size: 14px;
+        width: 100%;
+        min-height: 48px;
+        max-height: 120px;
+        
+        &::placeholder {
+            color: var(--color-text-muted);
+            opacity: 0.8;
+        }
+    }
+
+    .prompt-box-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .footer-tools {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+}
+
+/* Área de inyección drag and drop compacta en la caja de prompt */
+.ai-studio-drag-drop-zone {
+    border: 1px dashed var(--color-border-card);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    background-color: var(--color-surface-variant);
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+
+    &:hover, &.dragover {
+        background-color: var(--color-primary-glow);
+        border-color: var(--color-primary);
+    }
+}
+
+/* Estilos de botones estilo Google (sin borde, planos, colores suaves) */
+.btn-google-flat {
+    background: transparent;
+    border: 1px solid var(--color-border-card);
+    color: var(--color-text-main);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.15s;
+
+    &:hover {
+        background-color: var(--color-surface-variant);
+    }
+
+    &.active {
+        background-color: var(--color-primary-glow);
+        color: var(--color-primary);
+        border-color: transparent;
+    }
+}
+
+.btn-google-action {
+    background-color: var(--color-primary);
+    color: var(--color-bg-card);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+/* Botón colapsador de paneles */
+.btn-sidebar-arrow {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-surface-variant);
+        color: var(--color-text-main);
+    }
+}
+
+/* Contenedores de pestañas minimalistas AI Studio */
+.ai-studio-tabs {
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid var(--color-border-card);
+    margin-bottom: 20px;
+
+    .tab-item {
+        background: transparent;
+        border: none;
+        color: var(--color-text-muted);
+        padding: 8px 4px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.15s;
+
+        &:hover {
+            color: var(--color-text-main);
+        }
+
+        &.active {
+            color: var(--color-primary);
+            font-weight: 600;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background-color: var(--color-primary);
+                border-radius: 2px;
+            }
+        }
+    }
+}
+
+/* Visor del lector de prosa literaria al estilo clásico */
+.prose-paragraph {
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.1px;
+    text-align: justify;
+}
+
+.translator-note {
+    border-left: 3px solid var(--color-accent-pink);
+    padding-left: 14px;
+    margin: 18px 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 13.5px;
+    background: rgba(184, 27, 108, 0.03);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 0 4px 4px 0;
+}
+
+// ==========================================
+// 8. ESTABILIZACIÓN DE NOTIFICACIONES TOASTS (AUD-07)
+// ==========================================
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 380px;
+    width: calc(100% - 48px);
+    pointer-events: none;
+    transition: bottom 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    @media (max-width: 1199.98px) {
+        bottom: 84px; // Dejar margen libre para la barra de navegación rápida inferior
+        right: 24px;
+    }
+}
+
+.toast-item {
+    pointer-events: auto;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    &.dismissing {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.9);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    // Variaciones de estado premium adaptadas a Google AI Studio
+    &.toast-success {
+        border-left: 4px solid var(--color-accent-green, #10b981);
+        background: linear-gradient(90deg, rgba(16, 185, 129, 0.04) 0%, var(--color-bg-card) 100%);
+    }
+
+    &.toast-error {
+        border-left: 4px solid var(--color-accent-red, #ef4444);
+        background: linear-gradient(90deg, rgba(239, 68, 68, 0.04) 0%, var(--color-bg-card) 100%);
+    }
+
+    &.toast-warn {
+        border-left: 4px solid #f59e0b;
+        background: linear-gradient(90deg, rgba(245, 158, 11, 0.04) 0%, var(--color-bg-card) 100%);
+    }
+
+    &.toast-info {
+        border-left: 4px solid var(--color-primary, #3b82f6);
+        background: linear-gradient(90deg, rgba(59, 130, 246, 0.04) 0%, var(--color-bg-card) 100%);
+    }
+
+    .toast-icon {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        user-select: none;
+    }
+
+    .toast-message {
+        flex-grow: 1;
+        word-break: break-word;
+    }
+
+    .toast-close-btn {
+        background: transparent;
+        border: none;
+        color: var(--color-text-muted);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0 2px;
+        opacity: 0.5;
+        transition: opacity 0.15s ease, color 0.15s ease;
+        flex-shrink: 0;
+
+        &:hover {
+            opacity: 1;
+            color: var(--color-text-main);
+        }
+    }
+
+    [data-bs-theme="light"] & {
+        background: #ffffff;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border-color: #dee2e6;
+        color: #212529;
+
+        .toast-close-btn {
+            color: #6c757d;
+            &:hover {
+                color: #212529;
+            }
+        }
+    }
+}
+
+// ==========================================
+// 9. REDISEÑO TRILATERAL GLOBAL (BATT DESIGN SYSTEM)
+// ==========================================
+.flex-layout-global {
+    flex-direction: row !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+}
+
+// Ocultación asimétrica interactiva del botón de ajustes en el Header si el panel derecho está abierto
+body:not(.settings-collapsed) #header-btn-toggle-right-sidebar {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none !important; // Completely remove from layout space when settings panel is open
+}
+body.settings-collapsed #header-btn-toggle-right-sidebar {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex !important; // Restore layout space
+}
+
+// Línea vertical fina gris y animación premium de colapso/expansión estilo Google AI Studio
+.sidebar-collapsible-menu-wrapper {
+    .chevron-arrow {
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transform: rotate(-90deg) !important; // Apunta a la derecha al colapsarse
+    }
+
+    &.expanded {
+        .chevron-arrow {
+            transform: rotate(0deg) !important; // Gira hacia abajo al expandirse
+        }
+    }
+
+    .collapsible-submenu-container {
+        max-height: 0 !important;
+        opacity: 0 !important;
+        overflow: hidden !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-left: 18px !important;
+        padding-left: 10px !important;
+        border-left: 1px solid transparent !important;
+        pointer-events: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.2s ease,
+                    border-color 0.2s ease,
+                    margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    &.expanded {
+        .collapsible-submenu-container {
+            max-height: 500px !important; // Permite expandirse con suavidad
+            opacity: 1 !important;
+            margin-top: 4px !important;
+            border-left: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08)) !important;
+            pointer-events: auto !important;
+            overflow: visible !important;
+        }
+    }
+}
+
+// Estilo premium para el modal translúcido flotante del Command Palette
+.command-palette-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 1;
+    transition: opacity 0.2s ease, backdrop-filter 0.2s ease;
+
+    &.d-none {
+        display: none !important;
+        opacity: 0;
+        backdrop-filter: none;
+        pointer-events: none;
+    }
+}
+
+.command-palette-box {
+    background-color: var(--color-bg-card, #12131a);
+    border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+    width: 100%;
+    max-width: 540px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.command-palette-input-wrapper {
+    background-color: rgba(0, 0, 0, 0.15);
+    
+    input {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.command-palette-results {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.command-palette-item {
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    
+    &:hover {
+        background-color: var(--color-surface-variant, rgba(255, 255, 255, 0.04));
+        transform: translateX(2px);
+    }
+}
+
+// Compatibilidad del modo de bajo rendimiento (low-perf-mode) para hardware de gama baja
+body.low-perf-mode {
+    .command-palette-backdrop {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background-color: rgba(0, 0, 0, 0.85) !important;
+    }
+
+    .command-palette-box {
+        box-shadow: none !important;
+        border: 2px solid var(--color-text-muted) !important;
+    }
+
+    .command-palette-item:hover {
+        transform: none !important;
+        background-color: var(--color-surface-variant) !important;
+    }
+
+    #header-btn-toggle-right-sidebar {
+        transition: none !important;
+    }
+}
+
+/* ==========================================
+   10. REDISEÑO DE BOTONES DE LA SIDEBAR (Estilo Google AI Studio)
+   ========================================== */
+
+// 1. Selector de proyectos superior
+.btn-brand-dropdown {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+    color: var(--color-text-main) !important;
+    padding: 8px 12px !important;
+    transition: background-color 0.15s ease !important;
+
+    &:hover, &:focus, &.show {
+        background-color: var(--color-surface-variant) !important;
+    }
+}
+
+// Menu lateral: dropdown items
+.dropdown-menu-brand {
+    background-color: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border-card) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    
+    .dropdown-item {
+        color: var(--color-text-main) !important;
+        border: none !important;
+        border-radius: 6px !important;
+        padding: 8px 12px !important;
+        transition: background-color 0.15s ease !important;
+        
+        &:hover, &:focus {
+            background-color: var(--color-surface-variant) !important;
+        }
+    }
+}
+
+// 2. Botones de menú de navegación de primer nivel
+.btn-sidebar-nav-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    border: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    padding: 10px 16px !important;
+    border-radius: 20px !important;
+    color: var(--color-text-main) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+    outline: none !important;
+
+    .icon {
+        color: var(--color-text-muted) !important;
+        transition: color 0.15s ease !important;
+    }
+
+    &:hover {
+        background-color: var(--color-surface-variant) !important;
+        color: var(--color-text-main) !important;
+
+        .icon {
+            color: var(--color-text-main) !important;
+        }
+    }
+
+    &.active {
+        background-color: var(--color-surface-variant) !important;
+        color: var(--color-primary) !important;
+        font-weight: 600 !important;
+
+        .icon {
+            color: var(--color-primary) !important;
+        }
+    }
+}
+
+// 3. Botones de submenú (segundo nivel)
+.btn-sidebar-subnav-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    border: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    padding: 8px 16px 8px 16px !important;
+    border-radius: 20px !important;
+    color: var(--color-text-muted) !important;
+    font-size: 13.5px !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+    outline: none !important;
+
+    .icon {
+        color: var(--color-text-muted) !important;
+        font-size: 18px !important;
+        transition: color 0.15s ease !important;
+    }
+
+    &:hover {
+        background-color: var(--color-surface-variant) !important;
+        color: var(--color-text-main) !important;
+
+        .icon {
+            color: var(--color-text-main) !important;
+        }
+    }
+
+    &.active {
+        background-color: var(--color-surface-variant) !important;
+        color: var(--color-primary) !important;
+        font-weight: 600 !important;
+
+        .icon {
+            color: var(--color-primary) !important;
+        }
+    }
+}
+
+// 4. Botones del pie de página de la barra lateral (Quick Actions)
+.btn-quick-icon-flat {
+    border: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    border-radius: 50% !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--color-text-muted) !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+    outline: none !important;
+
+    span {
+        font-size: 20px !important;
+    }
+
+    &:hover {
+        background-color: var(--color-surface-variant) !important;
+        color: var(--color-text-main) !important;
+    }
+}
+
+// Perfil de la barra lateral
+.avatar-circle-gemini {
+    background: var(--gemini-gradient) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.profile-bar {
+    border-radius: 12px !important;
+    transition: border-color 0.15s ease !important;
+    &:hover {
+        border-color: var(--color-primary) !important;
+        .avatar-circle-gemini {
+            transform: scale(1.05);
+        }
+    }
+}
+
+/* ==========================================
+   11. PERSONALIZACIÓN DE SCROLLBARS (Vertical & Horizontal)
+   ========================================== */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12) !important;
+    border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25) !important;
+}
+
+[data-bs-theme="dark"] {
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15) !important;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3) !important;
+    }
+}
+
+/* ==========================================
+   12. PLAYGROUND VIEW - ESTILO GOOGLE AI STUDIO (CSS GRID & FLEX)
+   ========================================== */
+
+.playground-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 32px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: var(--color-bg-base);
+}
+
+.playground-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.playground-title {
+    font-size: 28px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    color: var(--color-text-main);
+    margin: 0;
+}
+
+.playground-toggle-switch {
+    display: flex;
+    background-color: var(--color-surface-variant);
+    padding: 4px;
+    border-radius: 24px;
+    border: 1px solid var(--color-border-card);
+    
+    .toggle-btn {
+        border: none !important;
+        background: transparent !important;
+        padding: 6px 18px !important;
+        border-radius: 20px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: var(--color-text-muted) !important;
+        cursor: pointer !important;
+        transition: all 0.15s ease !important;
+        outline: none !important;
+        box-shadow: none !important;
+        
+        &.active {
+            background-color: var(--color-bg-card) !important;
+            color: var(--color-text-main) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+        }
+    }
+}
+
+.playground-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 24px auto;
+
+    @media (max-width: 992px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.playground-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                border-color 0.2s ease, 
+                box-shadow 0.2s ease;
+    text-decoration: none !important;
+    text-align: left;
+    height: 100%;
+
+    &:hover {
+        transform: translateY(-2px);
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+        
+        [data-bs-theme="dark"] & {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+        }
+    }
+
+    .card-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        span {
+            font-size: 20px;
+        }
+    }
+
+    .card-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--color-text-main);
+        margin: 0;
+    }
+
+    .card-description {
+        font-size: 13.5px;
+        color: var(--color-text-muted);
+        line-height: 1.5;
+        margin: 0;
+    }
+}
+
+.playground-link-row {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 1100px;
+    margin: 0 auto 48px auto;
+    width: 100%;
+}
+
+.btn-start-building {
+    background: transparent !important;
+    border: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--color-primary) !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    transition: gap 0.15s ease !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    &:hover {
+        gap: 8px !important;
+        color: var(--color-primary) !important;
+    }
+}
+
+.playground-bottom-chat-container {
+    max-width: 800px;
+    margin: auto auto 16px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.playground-bottom-chat-box {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    border-radius: 28px;
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:focus-within {
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 0 0 1px var(--color-primary-glow) !important;
+    }
+
+    .chat-input {
+        width: 100%;
+        border: none !important;
+        background: transparent !important;
+        font-size: 14.5px;
+        color: var(--color-text-main);
+        outline: none !important;
+        box-shadow: none !important;
+        padding: 4px 0;
+        
+        &::placeholder {
+            color: var(--color-text-muted);
+        }
+    }
+
+    .chat-actions-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .chat-actions-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .chat-actions-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .chat-action-btn {
+        border: none !important;
+        background-color: transparent !important;
+        background: transparent !important;
+        border-radius: 50% !important;
+        width: 36px !important;
+        height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: var(--color-text-muted) !important;
+        cursor: pointer !important;
+        box-shadow: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease !important;
+        outline: none !important;
+
+        &:hover {
+            background-color: var(--color-surface-variant) !important;
+            color: var(--color-text-main) !important;
+        }
+    }
+
+    .chat-action-btn-flat {
+        border: none !important;
+        background-color: transparent !important;
+        background: transparent !important;
+        border-radius: 16px !important;
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: var(--color-text-muted) !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        box-shadow: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease !important;
+        outline: none !important;
+
+        &:hover {
+            background-color: var(--color-surface-variant) !important;
+            color: var(--color-text-main) !important;
+        }
+    }
+
+    .chat-pill-google-search {
+        background-color: rgba(11, 87, 208, 0.08) !important;
+        color: #0b57d0 !important;
+        border-radius: 16px !important;
+        padding: 6px 14px !important;
+        font-size: 12.5px !important;
+        font-weight: 500 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        cursor: pointer !important;
+        transition: background-color 0.15s ease !important;
+        border: none !important;
+
+        [data-bs-theme="dark"] & {
+            background-color: rgba(168, 199, 250, 0.12) !important;
+            color: #a8c7fa !important;
+        }
+
+        &:hover {
+            background-color: rgba(11, 87, 208, 0.15) !important;
+            [data-bs-theme="dark"] & {
+                background-color: rgba(168, 199, 250, 0.2) !important;
+            }
+        }
+
+        .pill-close {
+            font-size: 14px;
+            cursor: pointer;
+            opacity: 0.7;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .btn-run-chat {
+        background-color: var(--color-surface-variant) !important;
+        border: none !important;
+        border-radius: 20px !important;
+        padding: 8px 18px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: var(--color-text-muted) !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        box-shadow: none !important;
+        transition: all 0.15s ease !important;
+        outline: none !important;
+
+        &:hover, &.active {
+            background-color: var(--color-primary) !important;
+            color: #ffffff !important;
+            
+            [data-bs-theme="dark"] & {
+                color: #131314 !important;
+            }
+        }
+    }
+}
+// ==========================================================================
+// 11. AJUSTES RESPONSIVOS DE CABECERA CON PANELES LATERALES EXPANDIDOS (BATT ESTABILIZACIÓN)
+// ==========================================================================
+
+// Truncamiento inteligente por defecto del título de la novela en el Header
+#header-novel-title {
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+    transition: max-width 0.2s ease;
+}
+
+// Responsividad dinámica cuando ambos paneles laterales están desplegados (Sustracción de 560px)
+@media (max-width: 1400px) {
+    body:not(.sidebar-collapsed):not(.settings-collapsed) {
+        #header-system-time {
+            display: none !important;
+        }
+        #header-bridge-status-text {
+            display: none !important;
+        }
+        #header-novel-title {
+            max-width: 110px;
+        }
+    }
+}
+
+// ==========================================================================
+// 12. CAJONES FLOTANTES RESPONSIVOS (OVERLAY DRAWERS) PARA MONITOR DE 1024x768 (< 1200px)
+// ==========================================================================
+@media (max-width: 1199.98px) {
+    // 1. Convertir la barra lateral izquierda en un cajón flotante (overlay drawer)
+    #layout-sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        height: 100vh !important;
+        width: 240px !important;
+        max-width: 240px !important;
+        z-index: 1050 !important;
+        background-color: var(--color-bg-base) !important;
+        border-right: 1px solid var(--color-border-card) !important;
+        box-shadow: 8px 0 24px rgba(0, 0, 0, 0.45) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s !important;
+        transform: translateX(0) !important;
+        visibility: visible !important;
+    }
+
+    body.sidebar-collapsed #layout-sidebar {
+        transform: translateX(-100%) !important;
+        box-shadow: none !important;
+        visibility: hidden !important;
+    }
+
+    // 2. Convertir el panel lateral derecho de ajustes en un cajón flotante (overlay drawer)
+    #layout-sidebar-right {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        height: 100vh !important;
+        width: 320px !important;
+        max-width: 320px !important;
+        z-index: 1050 !important;
+        background-color: var(--color-bg-base) !important;
+        border-left: 1px solid var(--color-border-card) !important;
+        box-shadow: -8px 0 24px rgba(0, 0, 0, 0.45) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s !important;
+        transform: translateX(0) !important;
+        visibility: visible !important;
+    }
+
+    body.settings-collapsed #layout-sidebar-right {
+        transform: translateX(100%) !important;
+        box-shadow: none !important;
+        visibility: hidden !important;
+    }
+
+    // 3. El contenedor del espacio de trabajo central ahora siempre ocupa el 100% de la pantalla sin cortarse ni deformarse
+    #main-telemetry-panel-container {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important; // Permitir que se contraiga sin problemas
+    }
+
+    // 4. Refinamientos estéticos de márgenes y grilla para pantallas más compactas
+    .playground-container {
+        padding: 24px 16px !important;
+    }
+
+    .playground-header {
+        margin-bottom: 24px !important;
+    }
+
+    .playground-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .playground-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .playground-title {
+        font-size: 22px !important;
+    }
+}
+
+
+// ==========================================================================
+// 13. ESTILOS PREMIUM PARA LECTOR INMERSIVO Y CAJÓN LATERAL DE GLOSARIO (BATT)
+// ==========================================================================
+
+/* Variables privadas locales para el Lector Inmersivo */
+.reader-body-premium {
+  --reader-font-size: 17.5px;
+  --reader-line-height: 1.85;
+  --reader-bg-color: var(--color-bg-card);
+  --reader-text-color: var(--color-text-main);
+  --reader-font-family: 'Lora', 'Georgia', 'Merriweather', serif;
+
+  background-color: var(--reader-bg-color) !important;
+  color: var(--reader-text-color) !important;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Aplicación de las variables en los párrafos de prosa */
+  .markdown-rendered {
+    font-family: var(--reader-font-family) !important;
+    font-size: var(--reader-font-size) !important;
+    line-height: var(--reader-line-height) !important;
+    color: var(--reader-text-color) !important;
+
+    p.prose-paragraph {
+      color: var(--reader-text-color) !important;
+    }
+  }
+
+  /* Temas de Lectura Literaria */
+  &.theme-reader-sepia {
+    --reader-bg-color: #f4ecd8 !important;
+    --reader-text-color: #5b4636 !important;
+    border-color: #e8dfd3 !important;
+    
+    blockquote.translator-note {
+      background: #eae0ce !important;
+      border-left-color: #8c6d58 !important;
+      color: #634d3d !important;
+    }
+
+    hr.reader-divider {
+      background: linear-gradient(to right, transparent, #e8dfd3, transparent) !important;
+    }
+
+    .kaomoji-highlight {
+      background: rgba(91, 70, 54, 0.08) !important;
+      border-color: rgba(91, 70, 54, 0.2) !important;
+      color: #5b4636 !important;
+    }
+  }
+
+  &.theme-reader-night {
+    --reader-bg-color: #0f0f11 !important;
+    --reader-text-color: #a0a0ab !important;
+    border-color: #1e1e24 !important;
+
+    blockquote.translator-note {
+      background: #16161b !important;
+      border-left-color: #3f3f46 !important;
+      color: #8c8c9a !important;
+    }
+
+    hr.reader-divider {
+      background: linear-gradient(to right, transparent, #1e1e24, transparent) !important;
+    }
+
+    .kaomoji-highlight {
+      background: rgba(160, 160, 171, 0.08) !important;
+      border-color: rgba(160, 160, 171, 0.2) !important;
+      color: #d4d4d8 !important;
+    }
+  }
+
+  &.theme-reader-forest {
+    --reader-bg-color: #111a17 !important;
+    --reader-text-color: #a3b899 !important;
+    border-color: #1a2c25 !important;
+
+    blockquote.translator-note {
+      background: #162420 !important;
+      border-left-color: #2e4a3f !important;
+      color: #839b79 !important;
+    }
+
+    hr.reader-divider {
+      background: linear-gradient(to right, transparent, #1a2c25, transparent) !important;
+    }
+
+    .kaomoji-highlight {
+      background: rgba(163, 184, 153, 0.08) !important;
+      border-color: rgba(163, 184, 153, 0.2) !important;
+      color: #c4d4be !important;
+    }
+  }
+}
+
+/* Tipografía de lectura Serif */
+.font-reader-serif {
+  --reader-font-family: 'Lora', 'Georgia', 'Merriweather', serif !important;
+}
+
+/* Tipografía de lectura Sans-Serif */
+.font-reader-sans {
+  --reader-font-family: 'Outfit', 'Inter', sans-serif !important;
+}
+
+/* Estilos de la botonera tipográfica superior del lector */
+.reader-typography-controls-wrapper {
+  background: var(--color-surface-variant);
+  border: 1px solid var(--color-border-card);
+  border-radius: 20px;
+  padding: 6px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--box-shadow-premium);
+
+  .control-group-divider {
+    width: 1px;
+    height: 18px;
+    background-color: var(--color-border-card);
+  }
+
+  .btn-typo-control {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--color-text-main);
+    }
+
+    &.active {
+      background-color: var(--color-primary-glow);
+      color: var(--color-primary);
+    }
+  }
+
+  .theme-dot-selector {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s, border-color 0.15s;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+
+    &.active {
+      border-color: var(--color-primary) !important;
+      box-shadow: 0 0 6px var(--color-primary);
+    }
+
+    &.dot-system {
+      background: linear-gradient(135deg, #f8f9fa 50%, #1e1f20 50%);
+      border-color: var(--color-border-card);
+    }
+    &.dot-sepia {
+      background-color: #f4ecd8;
+      border-color: #e8dfd3;
+    }
+    &.dot-night {
+      background-color: #0f0f11;
+      border-color: #1e1e24;
+    }
+    &.dot-forest {
+      background-color: #111a17;
+      border-color: #1a2c25;
+    }
+  }
+}
+
+/* CAJÓN DESLIZANTE DE GLOSARIO EN CALIENTE (GLOSARIO DRAWER) */
+.glossary-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  height: 100%;
+  background: rgba(19, 19, 22, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-left: 1px solid var(--color-border-card);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  [data-bs-theme="light"] & {
+    background: rgba(255, 255, 255, 0.9);
+    border-left-color: #e2e8f0;
+  }
+
+  .drawer-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--color-border-card);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    [data-bs-theme="light"] & {
+      border-bottom-color: #e2e8f0;
+    }
+  }
+
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+
+    .glossary-search-wrapper {
+      margin-bottom: 16px;
+      position: relative;
+      
+      .glossary-search-input {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--color-border-card);
+        border-radius: 12px;
+        color: var(--color-text-main);
+        font-size: 13px;
+        padding: 8px 12px 8px 36px;
+        width: 100%;
+        outline: none;
+        transition: border-color 0.15s ease;
+
+        &:focus {
+          border-color: var(--color-primary);
+        }
+
+        [data-bs-theme="light"] & {
+          background: #ffffff;
+          border-color: #cbd5e1;
+        }
+      }
+
+      .search-icon-fixed {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-text-muted);
+        pointer-events: none;
+      }
+    }
+
+    .glossary-rendered-content {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+
+      h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-text-main);
+        margin-top: 18px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid var(--color-border-card);
+        padding-bottom: 4px;
+
+        [data-bs-theme="light"] & {
+          border-bottom-color: #cbd5e1;
+          color: #1e293b;
+        }
+      }
+
+      ul {
+        padding-left: 16px;
+        margin-bottom: 12px;
+        
+        li {
+          margin-bottom: 6px;
+          list-style-type: square;
+
+          strong {
+            color: var(--color-primary);
+
+            [data-bs-theme="light"] & {
+              color: #1a73e8;
+            }
+          }
+        }
+      }
+
+      .glossary-no-results {
+        text-align: center;
+        padding: 32px 0;
+        color: var(--color-text-muted);
+        font-style: italic;
+      }
+    }
+  }
+}
+
+/* Lector Layout Wrapper para habilitar el drawer absoluto */
+.reader-modular-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Botón interactivo de exportación */
+.btn-reader-secondary {
+  background: var(--color-surface-variant);
+  border: 1px solid var(--color-border-card);
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-border-card);
+    color: var(--color-text-main);
+  }
+}

@@ -1,0 +1,30 @@
+# Dependencias locales instaladas
+node_modules/
+
+# Carpeta de compilación estática de Vite
+dist/
+
+# Bitácoras de logs locales
+.logs/
+*.log
+
+# Entorno local con variables de entorno secretas
+.env
+.env.local
+
+# Exclusiones estrictas para evitar subir capítulos masivos pesados
+# Se ignoran los archivos masivos de texto, pero se preservan las plantillas e índices estructurados
+vault/*/*/01_origen/*.txt
+vault/*/*/02_crudo/*.txt
+vault/*/*/03_final/*.md
+
+# Archivos temporales e IDEs de desarrollo
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+Thumbs.db
+ehthumbs.db
+Desktop.ini

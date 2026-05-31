@@ -1,0 +1,40 @@
+{
+    "system_settings": {
+        "studio_name": "Buca AI Translation Tool (BATT)",
+        "version": "1.0.0",
+        "environment": "local_antigravity",
+        "developer_mode": false
+    },
+    "translation_modes": {
+        "source_language": "zh",
+        "target_languages": {
+            "es_global_neutro": true,
+            "en_literary": false,
+            "it_literary": false,
+            "sr_cyrillic": false
+        }
+    },
+    "model_routing": {
+        "comment": "Enrutamiento inteligente para optimizar el consumo de tokens y presupuesto técnico.",
+        "traductor-universal": "gemini-1.5-pro",
+        "extractor-historico": "gemini-1.5-flash",
+        "archivista-indexador": "gemini-1.5-flash",
+        "director-arcos": "gemini-1.5-pro",
+        "corrector-lqa": "gemini-1.5-pro",
+        "localizador-cultural": "gemini-1.5-flash"
+    },
+    "safety_firewall": {
+        "comment": "Cortafuegos activo para prevenir errores humanos, lagunas y sobrecostos por reprocesamiento.",
+        "garbage_text_filter": true,
+        "max_character_threshold_per_chapter": 15000,
+        "prevent_overwrite_final_chapters": true,
+        "processing_queue_mode": "FIFO_SEQUENTIAL",
+        "retry_on_empty_file_leak": true,
+        "max_api_retries": 3
+    },
+    "automation_triggers": {
+        "watcher_active": true,
+        "input_directory_polling_ms": 500,
+        "backup_before_write": true
+    }
+}
