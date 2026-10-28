@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: './',
+  // root: 'C:/wamp64/www/Clepces/projects/batt-studio',
   server: {
-    port: 5173,
+    port: 3001,
     open: true,
-    strictPort: true
-  }
+    strictPort: true,
+    host: 'batt-studio.clepces.local',
+    cors: true
+
+  },
+  base: '/', // para que funcione con el subdominio
 });
